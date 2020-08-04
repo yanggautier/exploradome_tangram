@@ -280,7 +280,7 @@ We Checked the Mean Average Precision (mAP) of our Model. We runned this command
 
 Then the saved weight file that gave the highest mAP was used (MAP_yolov4_historic)
 
-### 3.  MAP - Mean Average Accuracy 
+### 3.  MAP - Mean Average Precision 
 
 As we can easily see on this table, we see that from 1000 to 4000 iterations an rise of all metrics used. Whereas, from 4000 to 6000 iterations we see a drop in our Mean Average Precision (MAP). By continuing we spot an increasing  until 0.97 for MAP (figure already reached at 4000 iterations). On all of our iterations, the best results obtained for the MAP are for a number of iterations between 3000 to 3800.
 
@@ -319,7 +319,8 @@ We trained the model over 24000 iterations (it took 8 hours). We saved the yolov
 
 <p align="center" title="Test"><img src="data/helpers/chart.png"></p>
 
-### 3.  MAP - Mean Average Accuracy 
+
+### 3.  MAP - Mean Average Precision
 
 We Checked the Mean Average Precision (mAP) of our Model. We runned this command on multiple of the saved weights to compare and find the weights with the highest mAP as that is the most accurate one.
 
@@ -334,6 +335,9 @@ Then the saved weight file that gave the highest mAP was used (MAP_yolov4_histor
 #### Precision per class on the test set
 <p align="center"><img src="data/helpers/averageperclasstest.JPG" width="640"\></p>
 
+# FPS comparaison yolov4 vs yolov4-tiny
+
+<p align="center"><img src="data/helpers/Capturefpscomp.jpg" width="640"\></p>
 
 # Transformation of our weights in Tensorflow 2.0
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
