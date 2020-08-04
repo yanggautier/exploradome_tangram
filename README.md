@@ -315,8 +315,16 @@ To train our model using yolov4 tiny, the steps are the same that previously jus
 - configure the YOLOv4_tiny_config file : it is the same changes as previously excepted that we changed the classes = 12 in the two YOLO layers  (ie: line 220 and line 268) and filters = 51 in the two convolutional layers before the YOLO layers (ie: lines 212 and line 262). 
   
 ### 2. Training
+We trained the model over 24000 iterations (it took 8 hours). We saved the yolov4-tiny-obj_"nb_iter".weights files every 1000 iterations on our google drive backup folder.
+
+<p align="center" title="Test"><img src="data/helpers/chart.png"></p>
 
 ### 3.  MAP - Mean Average Accuracy 
+
+We Checked the Mean Average Precision (mAP) of our Model. We runned this command on multiple of the saved weights to compare and find the weights with the highest mAP as that is the most accurate one.
+
+Then the saved weight file that gave the highest mAP was used (MAP_yolov4_historic)
+
 #### Train
 <p align="center" title="Train"><img src="data/helpers/maptraintiny.JPG"></p>
 
