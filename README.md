@@ -445,7 +445,7 @@ Use data/custom_yolov4.weights et change to custom.weights
 # but if you want to use new weights, you will have to use this commande transform them to tensorflow 
 python save_model.py --weights ./data/custom.weights --output ./checkpoints/custom-416 --input_size 416 --model yolov4 
 ```
-### Step2 : run yolov4-tiny tensorflow model
+### Step2 : run yolov4 tensorflow model
 #### On image
 ```bash
 # Run custom yolov4 tensorflow model 
