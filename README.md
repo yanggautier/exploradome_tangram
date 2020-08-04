@@ -186,14 +186,17 @@ For our  test dataset we did simple different Augmentation Options to obtain mor
 - rotation 5°
 - Exposure: 15% and 7%
 
-## Dataset after data augmentation : 
+### Dataset after data augmentation : 
 3016 images : 
 
 - 2527 images for the training dataset (~ 83%)
 - 489 images for the test dataset (~ 17%)
 
+<p><img src="data/helpers/train_list.png"><img src="data/helpers/train_augmented.png"></p>
+<p><img src="data/helpers/test_list.png"><img src="data/helpers/test_augmented.png"></p>
 
-## YOLOv4 training on our Tangram dataset
+
+## 6. YOLOv4 training on our Tangram dataset
 
 For that purpose we used YOLOv4 Darknet (from AlexeyAB's Github repository) in the Cloud through Google Colab. We decided to work on Google Colab because it offers free gpu and the installation of yolov4 darknet is easy. We followed the step-by-step walkthrough tutorial of "the AI GUY" :
 -  https://colab.research.google.com/drive/1_GdoqCJWXsChrOiY8sZMr_zbr_fH-0Fg?usp=sharing#scrollTo=qaONUTI2l4Sf
