@@ -319,9 +319,13 @@ To train our model using yolov4 tiny, the steps are the same that previously jus
 ### 2. Training
 
 ### 3.  MAP - Mean Average Accuracy 
+#### Train
+<p align="center" title="Train"><img src="data/helpers/maptraintiny.JPG"></p>
+#### Test
+<p align="center" title="Test"><img src="data/helpers/maptesttiny.JPG"></p>
 
-
-
+#### Precision per class on the test set
+<p align="center"><img src="data/helpers/averageperclasstest.JPG" width="640"\></p>
 
 
 # Transformation of our weights in Tensorflow 2.0
