@@ -45,6 +45,7 @@ The first step was to create our image classification, so we had to determine th
 
 
 
+
 ## 2. Cut video into photos
 
 
@@ -150,9 +151,6 @@ Data augmentation is a strategy to increase the diversity of data available for 
 In order to train our model on a consistent dataset and avoid over-training, we decided to do a data augmentation with Roboflowai. For this, we used Roboflow which allows several transformations of the images, such as: blur, rotation, shear, exposure, brightness, noise, blur. 
 
 Every group member did its own mix of transformation. 
-
-
-We decide to split the dataset like : 80% for training dataset, and 20% for test dataset
 
 
 ### Steps
@@ -343,3 +341,200 @@ As we might guessed, the difference is obvious. Particularly due to the fact tha
 
 
 
+
+
+# tensorflow-yolov4
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
+
+YOLOv4, YOLOv4-tiny Implemented in Tensorflow 2.0. 
+Convert YOLO v4, tiny .weights to .pb format for tensorflow.
+<p align="center"><img src="data/helpers/demo.gif"\></p>
+
+## Getting Started
+### Conda (Recommended)
+
+```bash
+# Tensorflow CPU
+conda env create -f conda-cpu.yml
+conda activate yolov4-cpu
+
+# Tensorflow GPU
+conda env create -f conda-gpu.yml
+conda activate yolov4-gpu
+```
+
+### Pip
+```bash
+# TensorFlow CPU
+pip install -r requirements.txt
+
+# TensorFlow GPU
+pip install -r requirements-gpu.txt
+```
+### Nvidia Driver (For GPU, if you are not using Conda Environment and haven't set up CUDA yet)
+Make sure to use CUDA Toolkit version 10.1 as it is the proper version for the TensorFlow version used in this repository.
+https://developer.nvidia.com/cuda-10.1-download-archive-update2
+
+### Performance
+Check out how YOLOv4 compares to other object detection systems.
+
+<p align="center"><img src="data/helpers/performance.png" width="640"\></p>
+
+
+## Using Custom Trained YOLOv4 Weights
+
+<strong>Note:</strong>  If you want to use  you own weights:
+Copy and paste your custom .weights file into the 'data' folder and copy and paste your custom .names into the 'data/classes/' folder.
+The only change within the code you need to make in order for your custom model to work is on line 14 of 'core/config.py' file.
+Update the code to point at your custom .names file as seen below. (my custom .names file is called custom.names but yours might be named differently).
+
+
+<p align="center"><img src="data/helpers/custom_config.png" width="640"\></p>
+
+### YOLOv4-tiny Using Tensorflow (tf, .pb model) 
+
+#### Step1
+```bash
+# Convert darknet weights to tensorflow 
+# custom.weights = yolo_tiny_best.weights
+# custom tiny yolov4
+python save_model.py --weights ./data/custom.weights --output ./checkpoints/custom-tiny-416 --input_size 416 --model yolov4  --tiny
+```
+
+#### Step2
+##### image
+```bash
+# STEP 2
+# Run yolov4-tiny tensorflow model
+python detect.py --weights ./checkpoints/custom-tiny-416 --size 416 --model yolov4 --images ./data/images/maison_3.png --tiny
+```
+
+##### video
+```bash
+# Run custom yolov4 model on video
+python detect_video.py --weights ./checkpoints/custom-tiny-416 --size 416 --model yolov4 --video ./data/video/cars.mp4 --output ./detections/results.avi --tiny
+```
+##### webcam
+```bash
+# Run yolov4 on webcam
+python detect_video.py --weights ./checkpoints/custom-416 --size 416 --model yolov4 --video 0 --output ./detections/results.avi --tiny
+```
+
+
+### YOLOv4 Using Tensorflow (tf, .pb model)
+To implement YOLOv4 using TensorFlow, first we convert the yolov4_best.weights into the corresponding TensorFlow model files and then run the model.
+
+Use data/custom_yolov4.weights et change to custom.weights
+
+```bash
+# Convert darknet weights to tensorflow
+
+# custom yolov4 
+# but if you want to use new weights, you will have to use this commande transform them to tensorflow 
+python save_model.py --weights ./data/custom.weights --output ./checkpoints/custom-416 --input_size 416 --model yolov4 
+
+
+# Run custom yolov4 tensorflow model 
+python detect.py --weights ./checkpoints/custom-416 --size 416 --model yolov4 --images ./data/images/car.jpg
+
+
+# Run custom yolov4 model on video
+python detect_video.py --weights ./checkpoints/custom-416 --size 416 --model yolov4 --video ./data/video/cars.mp4 --output ./detections/results.avi
+
+# Run yolov4 on webcam
+python detect_video.py --weights ./checkpoints/yolov4-416 --size 416 --model yolov4 --video 0 --output ./detections/results.avi
+```
+If you want to run yolov3 or yolov3-tiny change ``--model yolov3`` and .weights file in above commands.
+
+
+<strong>Note:</strong> You can also run the detector on multiple images at once by changing the --images flag like such ``--images "./data/images/kite.jpg, ./data/images/dog.jpg"``
+
+### Result Image(s) (Regular TensorFlow)
+You can find the outputted image(s) showing the detections saved within the 'detections' folder.
+#### Pre-trained YOLOv4 Model Example
+<p align="center"><img src="data/helpers/result.png" width="640"\></p>
+
+#### Custom YOLOv4 Model Example (see video link above to train this model)
+<p align="center"><img src="data/helpers/custom_result.png" width="640"\></p>
+
+### Result Video
+Video saves wherever you point --output flag to. If you don't set the flag then your video will not be saved with detections on it.
+<p align="center"><img src="data/helpers/demo.gif"\></p>
+
+
+
+
+## Command Line Args Reference
+
+```bash
+save_model.py:
+  --weights: path to weights file
+    (default: './data/yolov4.weights')
+  --output: path to output
+    (default: './checkpoints/yolov4-416')
+  --[no]tiny: yolov4 or yolov4-tiny
+    (default: 'False')
+  --input_size: define input size of export model
+    (default: 416)
+  --framework: what framework to use (tf, trt, tflite)
+    (default: tf)
+  --model: yolov3 or yolov4
+    (default: yolov4)
+
+detect.py:
+  --images: path to input images as a string with images separated by ","
+    (default: './data/images/kite.jpg')
+  --output: path to output folder
+    (default: './detections/')
+  --[no]tiny: yolov4 or yolov4-tiny
+    (default: 'False')
+  --weights: path to weights file
+    (default: './checkpoints/yolov4-416')
+  --framework: what framework to use (tf, trt, tflite)
+    (default: tf)
+  --model: yolov3 or yolov4
+    (default: yolov4)
+  --size: resize images to
+    (default: 416)
+  --iou: iou threshold
+    (default: 0.45)
+  --score: confidence threshold
+    (default: 0.25)
+    
+detect_video.py:
+  --video: path to input video (use 0 for webcam)
+    (default: './data/video/video.mp4')
+  --output: path to output video (remember to set right codec for given format. e.g. XVID for .avi)
+    (default: None)
+  --output_format: codec used in VideoWriter when saving video to file
+    (default: 'XVID)
+  --[no]tiny: yolov4 or yolov4-tiny
+    (default: 'false')
+  --weights: path to weights file
+    (default: './checkpoints/yolov4-416')
+  --framework: what framework to use (tf, trt, tflite)
+    (default: tf)
+  --model: yolov3 or yolov4
+    (default: yolov4)
+  --size: resize images to
+    (default: 416)
+  --iou: iou threshold
+    (default: 0.45)
+  --score: confidence threshold
+    (default: 0.25)
+```
+
+
+### References
+
+  
+  * tensorflow-yolov4-tflite [YOLOv4] from theAIGuysCode
+  * (https://github.com/theAIGuysCode/tensorflow-yolov4-tflite)
+
+  * YOLOv4: Optimal Speed and Accuracy of Object Detection [YOLOv4](https://arxiv.org/abs/2004.10934).
+  * [darknet](https://github.com/AlexeyAB/darknet)
+  
+  
+
+  * [Yolov3 tensorflow](https://github.com/YunYang1994/tensorflow-yolov3)
+  * [Yolov3 tf2](https://github.com/zzh8829/yolov3-tf2)
