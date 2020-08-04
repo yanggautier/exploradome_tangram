@@ -214,6 +214,11 @@ In order to create a custom YOLOv4 detector we  needed the following:
 
 ### 1. Setting up
 
+![Yolov3 configuration files cheat sheet.jpg](http://blog.ibanyez.info/download/B20190410T000000072.png)
+
+You can download the cheat sheet [here](http://blog.ibanyez.info/download/B20190410T000000072.png)
+
+
 #### the cfg (configuration) file
 We edit the cfg file named "yolov4-obj.cfg" based on how many classes we are training.
 Following the recommandations of the tutorial we changed the first lines of the file as follow : 
