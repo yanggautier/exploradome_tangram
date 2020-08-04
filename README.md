@@ -28,7 +28,7 @@ The tangrams are made with 7 parts :
 
 When you put them together, it creates 12 shapes :
 
-boat, bowl, cat, heart, swan, rabbit, house, hammer, mountain, bridge, fox, turtle
+boat(bateau), bowl(bol), cat(chat), heart(coeur), swan(cygne), rabbit(lapin), house(maison), hammer(marteau), mountain(montagne), bridge(pont), fox(renard), turtle(tortue)
 
 
 
