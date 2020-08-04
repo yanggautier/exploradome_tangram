@@ -125,7 +125,7 @@ python labelImg.py [IMAGE_PATH] [PRE-DEFINED CLASS FILE]
     - A file named “classes.txt” is saved to that folder too. “classes.txt” defines the list of class names that the YOLO label refers to.
 
 
-#### Result : initial Dataset
+## 4. Initial Dataset
 
 Choice of images for the initial dataset of labeled images before data augmentation:
 
@@ -138,7 +138,6 @@ We splitted the dataset into training data and testing before appplying data aug
 
 <p align="center"><img src="data/helpers/train_initial.png" width="340"\></p>
 <p align="center"><img src="data/helpers/test_initial.png" width="340"\></p>
-
 
 
 ## 5. Data augmentation 
