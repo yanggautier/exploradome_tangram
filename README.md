@@ -210,8 +210,8 @@ subdivisions = 16
 width = 416 (our image width)
 height = 416 (our image height)
 
-max_batches = 24000   ie :  (# of classes) * 2000 (but no less than 6000 so if you are training for 1, 2, or 3 classes it will be 6000, here detector for 12 classes gives a max_batches=24000) 
-steps = 19200,21600  ie: 80% of max_batches, 90% of max_batches (so here our max_batches = 24000)
+max_batches = 24000   # ie :  (# of classes) * 2000 (but no less than 6000 so if you are training for 1, 2, or 3 classes it will be 6000, here detector for 12 classes gives a max_batches=24000) 
+steps = 19200,21600  # ie: 80% of max_batches, 90% of max_batches (so here our max_batches = 24000)
 ```
 
 We changed the classes = 12 in the three YOLO layers  (ie: line 970, line 1058 and line 1146) and filters = 51 in the three convolutional layers before the YOLO layers (ie: lines 963, 1051 and line 1139)
@@ -283,8 +283,8 @@ We also train our model using yolov4 tiny.
 Performance metrics show that YOLOv4 tiny is roughly 8X as fast at inference time as YOLOv4 and roughly 2/3 as performant on MS COCO (a very hard dataset). On small custom detection tasks that are more tractable, you will see even less of a performance degradation. 
 
 The primary difference between YOLOv4 tiny and YOLOv4 is that the network size is dramatically reduced. The number of convolutional layers in the CSP backbone are compressed. The number of YOLO layers are two instead of three and there are fewer anchor boxes for prediction. You can see the differences between the two networks for yourself in the config files:
-[YOLOv4 tiny config]<href src="https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4-tiny.cfg">
-[YOLOv4 config]<href src="https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4.cfg">
+- [yolov4-tiny.cfg](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4-tiny.cfg)
+- [yolov4-tiny](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4.cfg)
   
 To train our model using yolov4 tiny, the steps are the same that previously just a fiew changes have to be made. 
 - download the yolov4-tiny weights
