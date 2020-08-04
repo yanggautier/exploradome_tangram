@@ -425,7 +425,7 @@ python detect.py --weights ./checkpoints/custom-tiny-416 --size 416 --model yolo
 ##### On video
 ```bash
 # Run custom yolov4 model on video
-python detect_video.py --weights ./checkpoints/custom-tiny-416 --size 416 --model yolov4 --video ./data/video/test_video.mp4 --output ./detections/results.avi --tiny
+python detect_video.py --weights ./checkpoints/custom-tiny-416 --size 416 --model yolov4 --video ./data/video/tangram_video.mp4 --output ./detections/results.avi --tiny
 ```
 ##### On  webcam
 ```bash
@@ -454,7 +454,7 @@ python detect.py --weights ./checkpoints/custom-416 --size 416 --model yolov4 --
 #### On video
 ```bash
 # Run custom yolov4 model on video
-python detect_video.py --weights ./checkpoints/custom-416 --size 416 --model yolov4 --video ./data/video/test_video.mp4 --output ./detections/results.avi
+python detect_video.py --weights ./checkpoints/custom-416 --size 416 --model yolov4 --video ./data/video/tangram_video.mp4 --output ./detections/results.avi
 ```
 #### On webcam
 ```bash
@@ -540,7 +540,7 @@ detect_video.py:
 ```
 
 
-### References
+# References
 
   
   * tensorflow-yolov4-tflite [YOLOv4] from theAIGuysCode
