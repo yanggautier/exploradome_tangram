@@ -204,6 +204,7 @@ In order to create a custom YOLOv4 detector we  needed the following:
 We edit the cfg file named "yolov4-obj.cfg" based on how many classes we are training.
 Following the recommandations of the tutorial we changed the first lines of the file as follow : 
 
+!!!bash
 batch = 64 
 subdivisions = 16
 width = 416 (our image width)
@@ -211,6 +212,7 @@ height = 416 (our image height)
 
 max_batches = 24000   ie :  (# of classes) * 2000 (but no less than 6000 so if you are training for 1, 2, or 3 classes it will be 6000, here detector for 12 classes gives a max_batches=24000) 
 steps = 19200,21600  ie: 80% of max_batches, 90% of max_batches (so here our max_batches = 24000)
+!!!
 
 We changed the classes = 12 in the three YOLO layers  (ie: line 970, line 1058 and line 1146) and filters = 51 in the three convolutional layers before the YOLO layers (ie: lines 963, 1051 and line 1139)
 
