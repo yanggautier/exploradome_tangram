@@ -1,7 +1,7 @@
 READ.ME
 
 
-
+# Exploradome Project 
 Exploradome's project is about an educational game for 6-year-old children. 
 
 Their ambition is to awaken children's interest about the future with object recognition and computer vision in a fun and educational way through a tangram game.
@@ -36,16 +36,16 @@ boat, bowl, cat, heart, swan, rabbit, house, hammer, mountain, bridge, fox, turt
 
 The objective of this project is to train a YOLO v4 model to recognize in real time the realization of tangram (record in live and make by children) and to make predictions on the realized shapes.
 
+# Dataset Creation 
 
-
-## Video recording :
+## 1. Video recording :
 
 The first step was to create our image classification, so we had to determine the 12 possible figures and annotate them. To do this, we decided to film continuously (using the camera provided by exploradome to respect the conditions under which the algorithm will be used) members of our team performing in turn the 12 possible figures.
 
 
 
 
-## Cut video into photos
+## 2. Cut video into photos
 
 
 
@@ -65,7 +65,7 @@ Methods retained :
 
 
 
-## Image annotations
+## 3. Image annotations
 
 We tested 2 methods :
 
@@ -86,7 +86,7 @@ our images. For that we used labelImg which is an image annotation tool. So we u
 
 
 
-#### LabelImg
+### LabelImg
 
 LabelImg is a graphical image annotation tool.
 
@@ -109,7 +109,7 @@ python3 labelImg.py [IMAGE_PATH] [PRE-DEFINED CLASS FILE]
 
 
 
-#### Steps (YOLO)
+### Steps (YOLO)
 In data/predefined_classes.txt define the list of classes that will be used for your training.
 Launch labelImg.py.
 Right below "Save" button in the toolbar, click "PascalVOC" button to switch to YOLO format.
@@ -119,7 +119,7 @@ A txt file of YOLO format will be saved in the same folder as the image with sam
 
 
 
-## Initial Dataset
+## 4. Result : initial Dataset
 
 Choice of images for the initial dataset of labeled images before data augmentation:
 
@@ -131,7 +131,7 @@ We splitted the dataset into training data and testing before appplying data aug
 
 
 
-## Data augmentation, split of the dataset
+## 5. Data augmentation 
 
 Why is data augmentation needed?
 
