@@ -15,7 +15,7 @@ Tangram form detection from live video stream
 - [OpenCV](https://opencv.org/) (Open Computer Vision Library)
 
 ```bash
-pip install 
+pip install opencv-python tensorflow
 ```
 
 ## Approach taken
@@ -24,7 +24,9 @@ Find the best accuracy for the model (CNN with Tensorflow) - see the Google Shee
 
 ## In progress
 
-Test different model: CNN with Tensorflow 
+Tested so far:
+* MobileNet
+* InceptionV3
 
 ## Results or improvement strategy
 
@@ -108,6 +110,12 @@ To download the file:
 ### Trigram Preprocessing
 
 ### Trigram Model
+
+To use the model, open a new terminal and copy this link:
+
+```
+wget -O model.h5 'https://drive.google.com/uc?export=download&id=13dDtd4jsCyA6Z4MEPK3RsWDLiCZJvEPc'
+```
 
 ## Team
 
