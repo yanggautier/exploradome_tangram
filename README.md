@@ -370,12 +370,22 @@ conda activate yolov4-gpu
 
 ### Pip
 ```bash
+
+# Create a pip env on the cloned githud folder
+py -m pip install --user virtualenv
+py -m venv yolov4-gpu
+.\yolov4-gpu\Scripts\actvate # on windows
+
 # TensorFlow CPU
 pip install -r requirements.txt
 
 # TensorFlow GPU
 pip install -r requirements-gpu.txt
 ```
+
+**Note** : if you are using GPU with CUDA 10.1 version. Install tensorflow-gpu==2.1.0 instead of tensorflow-gpu==2.3.0rc0 as written in the requirements-gpu.txt
+
+
 ### Nvidia Driver (For GPU, if you are not using Conda Environment and haven't set up CUDA yet)
 Make sure to use CUDA Toolkit version 10.1 as it is the proper version for the TensorFlow version used in this repository.
 https://developer.nvidia.com/cuda-10.1-download-archive-update2
@@ -393,6 +403,8 @@ Copy and paste your custom .weights file into the 'data' folder and copy and pas
 The only change within the code you need to make in order for your custom model to work is on line 14 of 'core/config.py' file.
 Update the code to point at your custom .names file as seen below. (my custom .names file is called custom.names but yours might be named differently).
 
+
+**Note** here it is the tiny yolov4 custom weight (custom.weights) file that is present in the ./data folder 
 
 <p align="center"><img src="data/helpers/custom_config.png" width="640"\></p>
 
