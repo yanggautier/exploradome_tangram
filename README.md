@@ -70,30 +70,26 @@ Methods retained :
 We tested 2 methods :
 
 - labelImg (rectangle around the object)
-
 - VIA VGG Image Annotator (object outlines)
-
-  
 
 Method adopted :
 
-labelImg
+labelImg (graphical image annotation tool)
+
+From the video we took screenshots of the classes in two versions, a perfect version of the figure and an imperfect version of the figure with the tangrams peeled off. Once done, we had to label our images. For that we used labelImg which is an image annotation tool. 
 
 
 
-From this video we took screenshots of the classes in two versions, a perfect version of the figure and an imperfect version of the figure with the tangrams peeled off. Once done, we had to label
-our images. For that we used labelImg which is an image annotation tool. So we used two ways to proceed one is to go through the source code (tutorial available at this github link: https://github.com/tzutalin/labelImg), , the other is to download the .exe and launch the application directly from your desktop (download link  https://tzutalin.github.io/labelImg/)
+### Image annotations using labelImg 
 
+#### Installation
+So we used two ways to proceed :
 
+1. Go through the source code following the tutorial available at this github link: https://github.com/tzutalin/labelImg)
+2. Download the .exe and launch the application directly from desktop (download link https://tzutalin.github.io/labelImg/)
 
-### LabelImg
-
-LabelImg is a graphical image annotation tool.
-
-https://github.com/tzutalin/labelImg
-
-```
-Installation for Mac
+```python
+#### Installation for Mac
 
 brew install qt  # Install qt-5.x.x by Homebrew
 brew install libxml2
@@ -107,19 +103,29 @@ python3 labelImg.py
 python3 labelImg.py [IMAGE_PATH] [PRE-DEFINED CLASS FILE]
 ```
 
+```python
+#### Installation for Windows
+
+pyrcc4 -o lib/resources.py resources.qrc
+For pyqt5, pyrcc5 -o libs/resources.py resources.qrc
+
+python labelImg.py
+python labelImg.py [IMAGE_PATH] [PRE-DEFINED CLASS FILE]
+```
 
 
-### Steps (YOLO)
-In data/predefined_classes.txt define the list of classes that will be used for your training.
-Launch labelImg.py.
-Right below "Save" button in the toolbar, click "PascalVOC" button to switch to YOLO format.
-Use Open/OpenDIR to process single or multiple images. When finished with a single image, click save.
-A txt file of YOLO format will be saved in the same folder as the image with same name. A file named "classes.txt" is saved to that folder too. "classes.txt" defines the list of class names that the YOLO label refers to.
+
+#### Labelling in YOLO text file format.
+- In data/predefined_classes.txt define the list of classes that will be used for training.
+- Launch labelImg.py.
+- Right below “Save” button in the toolbar, click “PascalVOC” button to switch to YOLO format.
+- Use Open/OpenDIR to process single or multiple images.
+- When finished with a single image, click save.
+    - A txt file of YOLO format will be saved in the same folder as the image with same name.
+    - A file named “classes.txt” is saved to that folder too. “classes.txt” defines the list of class names that the YOLO label refers to.
 
 
-
-
-## 4. Result : initial Dataset
+#### Result : initial Dataset
 
 Choice of images for the initial dataset of labeled images before data augmentation:
 
@@ -128,6 +134,8 @@ Choice of images for the initial dataset of labeled images before data augmentat
 We splitted the dataset into training data and testing before appplying data augmentation :
 - train : 76 images 
 - test : 58 images 
+
+
 
 
 
