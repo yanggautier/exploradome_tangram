@@ -213,7 +213,7 @@ In order to create a custom YOLOv4 detector we  needed the following:
 - train.txt file (test.txt is optional here as well)
 
 ### 1. Setting up
-
+You can have a look at what configuration files you need to have in your local drive _`darknet`_ by looking this image (also available for yolov4)
 ![Yolov3 configuration files cheat sheet.jpg](http://blog.ibanyez.info/download/B20190410T000000072.png)
 
 You can download the cheat sheet [here](http://blog.ibanyez.info/download/B20190410T000000072.png)
