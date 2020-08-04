@@ -335,7 +335,7 @@ Then the saved weight file that gave the highest mAP was used (MAP_yolov4_histor
 #### Precision per class on the test set
 <p align="center"><img src="data/helpers/averageperclasstest.JPG" width="640"\></p>
 
-# FPS comparaison yolov4 vs yolov4-tiny
+# FPS comparaison :  yolov4 vs yolov4-tiny
 
 <p align="center"><img src="data/helpers/Capturefpscomp.jpg" width="640"\></p>
 
