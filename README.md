@@ -136,6 +136,8 @@ We splitted the dataset into training data and testing before appplying data aug
 - test : 58 images 
 
 
+<p align="center"><img src="data/helpers/train_initial.png" width="640"\></p>
+<p align="center"><img src="data/helpers/test_initial.png" width="640"\></p>
 
 
 
