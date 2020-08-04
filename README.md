@@ -130,6 +130,7 @@ We splitted the dataset into training data and testing before appplying data aug
 - test : 58 images 
 
 
+
 ## Data augmentation, split of the dataset
 
 Why is data augmentation needed?
@@ -137,10 +138,13 @@ Why is data augmentation needed?
 Data augmentation is a strategy to increase the diversity of data available for training models, without actually collecting new data.
 
 
-
 In order to train our model on a consistent dataset and avoid over-training, we decided to do a data augmentation with Roboflowai. For this, we used Roboflow which allows several transformations of the images, such as: blur, rotation, shear, exposure, brightness, noise, blur. 
 
 Every group member did its own mix of transformation. 
+
+
+We decide to split the dataset like : 80% for training dataset, and 20% for test dataset
+
 
 ### Steps
 
@@ -154,6 +158,7 @@ To import our images and bounding boxes in the YOLO Darknet format, we'll use Ro
 6. Click "Generate"
 7. Select YOLO Darknet as format and show download code
 8. Choose any link to download via terminal or jupyter notebook
+
 
 For our  training dataset we did five times different Augmentation Options to obtain more images.
 - Flip (vertical and horizontal)
@@ -177,7 +182,6 @@ For our  test dataset we did simple different Augmentation Options to obtain mor
 
 - 2527 images for the training dataset (~ 83%)
 - 489 images for the test dataset (~ 17%)
-
 
 
 ## YOLOv4 training on our Tangram dataset
@@ -229,6 +233,7 @@ lapin
 renard
 coeur
 chat
+
 
 NOTE: You do not want to have spaces in the class names.
 
