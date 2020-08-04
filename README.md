@@ -282,8 +282,6 @@ Then the saved weight file that gave the highest mAP was used (MAP_yolov4_histor
 
 ### 3.  MAP - Mean Average Accuracy 
 
-![tableaucomp.JPG](attachments/dbbfb77a-a147-47ad-afdd-377e1ea037d2/136aa9a1.JPG)
-
 As we can easily see on this table, we see that from 1000 to 4000 iterations an rise of all metrics used. Whereas, from 4000 to 6000 iterations we see a drop in our Mean Average Precision (MAP). By continuing we spot an increasing  until 0.97 for MAP (figure already reached at 4000 iterations). On all of our iterations, the best results obtained for the MAP are for a number of iterations between 3000 to 3800.
 
 
@@ -321,6 +319,7 @@ To train our model using yolov4 tiny, the steps are the same that previously jus
 ### 3.  MAP - Mean Average Accuracy 
 #### Train
 <p align="center" title="Train"><img src="data/helpers/maptraintiny.JPG"></p>
+
 #### Test
 <p align="center" title="Test"><img src="data/helpers/maptesttiny.JPG"></p>
 
