@@ -318,7 +318,7 @@ To train our model using yolov4 tiny, the steps are the same that previously jus
 - configure the YOLOv4_tiny_config file : it is the same changes as previously excepted that we changed the classes = 12 in the two YOLO layers  (ie: line 220 and line 268) and filters = 51 in the two convolutional layers before the YOLO layers (ie: lines 212 and line 262). 
   
 ### 2. Training
-We trained the model over 24000 iterations (it took 8 hours). We saved the yolov4-tiny-obj_"nb_iter".weights files every 1000 iterations on our google drive backup folder.
+We trained the model over 24000 iterations (it took 5 hours). We saved the yolov4-tiny-obj_"nb_iter".weights files every 1000 iterations on our google drive backup folder.
 
 <p align="center" title="Test"><img src="data/helpers/chart.png"></p>
 
