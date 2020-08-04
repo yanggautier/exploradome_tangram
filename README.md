@@ -196,14 +196,16 @@ For our  test dataset we did simple different Augmentation Options to obtain mor
 <p><img src="data/helpers/test_list.png"><img src="data/helpers/test_augmented.png"></p>
 
 
-## 6. YOLOv4 training on our Tangram dataset
+## 6. Training on our Tangram dataset : YOLOv4 vs YOLOv4 tiny 
+
+### YOLOv4
 
 For that purpose we used YOLOv4 Darknet (from AlexeyAB's Github repository) in the Cloud through Google Colab. We decided to work on Google Colab because it offers free gpu and the installation of yolov4 darknet is easy. We followed the step-by-step walkthrough tutorial of "the AI GUY" :
 -  https://colab.research.google.com/drive/1_GdoqCJWXsChrOiY8sZMr_zbr_fH-0Fg?usp=sharing#scrollTo=qaONUTI2l4Sf
 -  https://www.youtube.com/watch?v=mmj3nxGT2YQ
 -  https://github.com/theAIGuysCode/YOLOv4-Cloud-Tutorial/tree/master/yolov4
 
-Here is the Colab Notebook for showing how we trained our YOLOv4 Tangram detector : 
+Here is the Colab Notebook for showing how we trained our YOLOv4 Tangram detector : https://colab.research.google.com/drive/1mC3cBPB1w9W4tKD1ZAondm0pSfohXrzm?usp=sharing
 
 In order to create a custom YOLOv4 detector we  needed the following:
 
