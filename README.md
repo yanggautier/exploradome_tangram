@@ -1,6 +1,13 @@
 # Exploradome_tangram
 Tangram form detection from live video stream
 
+The tangram is a dissection puzzle consisting of seven flat polygons, called tans, which are put together to form shapes. 
+The objective is to replicate a pattern (given only an outline) using all seven pieces without overlap. 
+
+The 12 shapes are:
+![image](https://drive.google.com/uc?export=view&id=1O_vfKNLHZ7HEEBNUZfEWRGjRe7QnCtsS)
+
+boat(bateau), bowl(bol), cat(chat), heart(coeur), swan(cygne), rabbit(lapin), house(maison), hammer(marteau), mountain(montagne), bridge(pont),turtle(tortue), fox(renard)
 
 ## Table Of Contents
 -  [Installation and Usage](#Installation-and-Usage)
@@ -14,59 +21,60 @@ Tangram form detection from live video stream
 - [Tensorflow](https://www.tensorflow.org/) (An open source deep learning platform) 
 - [OpenCV](https://opencv.org/) (Open Computer Vision Library)
 
+### Requirements
+
+* Windows 10
+* CUDA GPU Toolkit v10.1
+* CUDA NN Toolkit v7.x
+* Visual Studio 2019
+
 ```bash
 pip install opencv-python tensorflow
 ```
 
 ## Approach taken
 
-Find the best accuracy for the model (CNN with Tensorflow) - see the Google Sheet
+Find the best accuracy with transfert learning model (CNN with Tensorflow) - see the Google Sheet
 
 ## In progress
 
 Tested so far:
-* MobileNet
-* InceptionV3
+* [MobileNet](https://keras.io/api/applications/mobilenet/)
+* [InceptionV3 + L2](https://keras.io/api/applications/inceptionv3/)
 
 ## Results or improvement strategy
 
-see the Google Sheet: https://docs.google.com/spreadsheets/d/1_P0LEN9CyY8Zfk653IVwfmMUg0E6tyfjU2sLSH3ChIc/edit?usp=sharing
+See the Google Sheet: https://docs.google.com/spreadsheets/d/1_P0LEN9CyY8Zfk653IVwfmMUg0E6tyfjU2sLSH3ChIc/edit?usp=sharing
 
 ## Configuration
 
 ## In Details
 ```
-├──  data  
-│    └── data  - here's the image classification datasets (from video_to_img).
-│    └── train - here's the file to train dataset.
-│    └── validation  		 - here's the file to validation dataset.
-│    └── video_to_img    - here's the file of raw image extraction of video file.
-│    └── WIN_20200727_16_30_12_Pro.mp4    - here's the tangram video for the creation of the datasets.
-│
-│
-├──  modules        - this file contains the modules.
-│    └── get_img_from_webcam.py  - here's the file to extract images of video cam, split in two.
-│ 
-│
-├── saved_model     - this folder contains any customed layers of your project.
-│   └── 
-│   └──
-│
-│ 
-├── collab Notebooks - this folder contains any model and preprocessing of your project.
-│   └── trigram_decoupage.ipynb
-│   └── trigram_model_test_Bintou_Jasmine.ipynb
-│   └── trigram_model_test_Laura.ipynb
-│   └── trigram_model_test_Shadi.ipynb
-│   └── trigram_model_test_Jason.ipynb
-│   └── trigram_preprocessing.ipynb
-│   └── video_processing.ipynb
+├──  data  - here's the image classification datasets
+│    └── train_full  - for the train and validation with all images (unbalanced).
+│    └── train_balanced - for the train and validation with 140 images for each categories (balanced).
+│    └── test_full  		- for the test with all images (unbalanced).
+│    └── test_balanced  - for the test with 28 images for each categories (balanced) - 20% of train_balanced dataset.
 │   
-└── main.py					- this foler contains unit test of your project.
+│
+│
+├──  modules  - this file contains the modules.
+│    └── get_img_from_webcam.py  - here's the file to extract images of video cam, split in two, predict 
+│                                  => output with pred of each categorie.
+│
+├── saved_model  - this folder contains any customed layers of your project.
+│   └── tangram_mobilenetv2.h5
+│   └── tangram_inceptionv3.h5
+│
+│ 
+├── collab Notebooks  - this folder contains any model and preprocessing of your project.
+│   └── trigram_model_v1.ipynb
+│   └── trigram_model_v2.ipynb
+│   
+└──
 ```
-### Dataset
-![image](https://drive.google.com/uc?export=view&id=1O_vfKNLHZ7HEEBNUZfEWRGjRe7QnCtsS)
 
+### Dataset
 The dataset has the following directory structure:
 
 ```
@@ -102,12 +110,28 @@ The dataset has the following directory structure:
 └── 
 ```
 To download the file:
-- data: [data zip](https://drive.google.com/file/d/1Eavrsk72iZeJFiv3NBnOkDxgs2WDF4Ow/view?usp=sharing)
-- train: [train zip](https://drive.google.com/file/d/1ZjOI81YRjdcNwF8i6gxLMC1UG02nu2QS/view?usp=sharing)
-- validation: [validation zip](https://drive.google.com/file/d/1oCzg1-qK1jKki0bnahJYu7XU5tUbTB_b/view?usp=sharing)
-- video_to_img (with all image of video file): [video to img zip](https://drive.google.com/file/d/13XPugnAZIxIP25GGkvKFjiDym-c7eMGL/view?usp=sharing)
+- train_full: [train_full](https://drive.google.com/file/d/18RoZgzSzTE6nzHCzzMuDl9h4RktS3rNo/view?usp=sharing)
+for the train and validation with all images (unbalanced dataset)
+
+- train_balanced: [train_balanced](https://drive.google.com/file/d/1V_rKMpjhHeJHRY0YcShYBZeun1uTz_G0/view?usp=sharing)
+for the train and validation with 140 images for each categories (balanced dataset)
+
+- test_full: [test_full](https://drive.google.com/file/d/15EB3UGwrMkUzZvJIlf6uxeXYeDUtFhXf/view?usp=sharing)
+for the test with all images (unbalanced dataset)
+
+- test_balanced: [test_balanced](https://drive.google.com/file/d/13tTo7ue3HUGeQXfq4aj215EZIEvHXs0M/view?usp=sharing)
+for the test with 28 images for each categories (balanced dataset) = 20% of train_balanced dataset
 
 ### Trigram Preprocessing
+Data Augmentation (applied on dataset):
+- Contrast changes (factor = 0.5 #darkens the image or 1.5 #brightens the image)
+- Blurring (applied after contrast change)
+=> already in folder train_full and test_full
+
+ImageDataGenerator with TensorFlow (applied on model):
+- Rescale: 1./255 is to transform every pixel value from range [0,255] -> [0,1]
+- Split train_full or train_balanced dataset to train and validation dataset (= 30% of train dataset)
+
 
 ### Trigram Model
 
