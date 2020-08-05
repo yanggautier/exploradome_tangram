@@ -430,7 +430,7 @@ python detect_video.py --weights ./checkpoints/custom-tiny-416 --size 416 --mode
 ##### On  webcam
 ```bash
 # Run yolov4 on webcam
-python detect_video.py --weights ./checkpoints/custom-416 --size 416 --model yolov4 --video 0 --output ./detections/results.avi --tiny
+python detect_video.py --weights ./checkpoints/custom-tiny-416 --size 416 --model yolov4 --video 0 --output ./detections/results.avi --tiny
 ```
 
 ##  YoLOv4 Using Tensorflow (tf, .pb model)
@@ -459,7 +459,7 @@ python detect_video.py --weights ./checkpoints/custom-416 --size 416 --model yol
 #### On webcam
 ```bash
 # Run yolov4 on webcam
-python detect_video.py --weights ./checkpoints/yolov4-416 --size 416 --model yolov4 --video 0 --output ./detections/results.avi
+python detect_video.py --weights ./checkpoints/custom-416 --size 416 --model yolov4 --video 0 --output ./detections/results.avi
 ```
 If you want to run yolov3 or yolov3-tiny change ``--model yolov3`` and .weights file in above commands.
 
