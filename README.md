@@ -39,9 +39,6 @@ This was done by:
 - python code for cutting the video every 3 seconds then manual sorting
 - video cutting test with the FreeVideo to JPG application (cut every 5 secondes)
 
-
-
-
 ## 3. Image annotations
 
 We tested 2 methods :
@@ -49,22 +46,17 @@ We tested 2 methods :
 - labelImg (rectangle around the object)
 - VIA VGG Image Annotator (object outlines)
 
-Method adopted :
-
-labelImg (graphical image annotation tool)
+Method adopted : labelImg (graphical image annotation tool)
 
 From the video we took screenshots of the classes in two versions, a perfect version of the figure and an imperfect version of the figure with the tangrams peeled off. Once done, we had to label our images. For that we used labelImg which is an image annotation tool. 
 
-
-
-### Image annotations using labelImg 
+### Guidelines for using image annotations using labelImg
 
 #### Installation
-So we used two ways to proceed :
-
-1. Go through the source code following the tutorial available at this github link: https://github.com/tzutalin/labelImg)
-2. Download the .exe and launch the application directly from desktop (download link https://tzutalin.github.io/labelImg/)
-
+Two installation methods are possible:
+    1. Go through the source code following the tutorial available at this GitHub link: https://github.com/tzutalin/labelImg)
+    2. Download the .exe and launch the application directly from desktop (download link https://tzutalin.github.io/labelImg/)
+    
 ```python
 #### Installation for Mac
 
