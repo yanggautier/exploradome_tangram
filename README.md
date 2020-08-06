@@ -328,10 +328,10 @@ We Checked the Mean Average Precision (mAP) of our Model. We runned this command
 Then the saved weight file that gave the highest mAP was used (MAP_yolov4_historic)
 
 #### Train
-<p align="center" title="Train"><img src="data/helpers/test_map_summary.PNG"></p>
+<p align="center" title="Train"><img src="data/helpers/train_map_summary.PNG"></p>
 
 #### Test
-<p align="center" title="Test"><img src="data/helpers/maptesttiny.JPG"></p>
+<p align="center" title="Test"><img src="data/helpers/test_map_summary.PNG"></p>
 
 #### Precision per class on the test set
 <p align="center"><img src="data/helpers/averageperclasstest.JPG" width="640"\></p>
