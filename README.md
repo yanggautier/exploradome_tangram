@@ -133,13 +133,12 @@ Choice of images for the initial dataset of labeled images before data augmentat
 - 134 labeled images (all table + tangram alone) with their corresponding ".txt" files of YOLO format (label and bounding box coordinates) thanks to LabelImg
 
 We splitted the dataset into training data and testing before appplying data augmentation :
-- train : 76 images 
-- test : 58 images 
+- train : 70 images 
 
+<p align="center"><img src="data/helpers/train_set_before_augmentation.PNG" width="340"\></p>
 
-<p align="center"><img src="data/helpers/train_initial.png" width="340"\></p>
-<p align="center"><img src="data/helpers/test_initial.png" width="340"\></p>
-
+- test : 59 images 
+<p align="center"><img src="data/helpers/test_set_before_augmentation.PNG" width="340"\></p>
 
 ## 5. Data augmentation 
 
@@ -167,28 +166,27 @@ To import our images and bounding boxes in the YOLO Darknet format, we'll use Ro
 8. Choose any link to download via terminal or jupyter notebook
 
 
-For our  training dataset we did five times different Augmentation Options to obtain more images.
+For our  training  dataset, to obtain more images, we performed different augmentation options randomly applied to images  .
 - Flip (vertical and horizontal)
 - 90° rotate (counter, clockwise, upside, down)
-- rotation 45°
-- Crop : 35% and 20% 
-- Brightness : 45% and 20%
-- Exposure: 15% and 7%
-- Blur : 1.25px and 3.75 px
+- rotation every 5° up to 45°
+- Crop : 20% 
+- Brightness : 5% and 10%
+- Exposure: 12% and 25%
+- Blur : 3px and 1.25px
 - Noise: 5px and 2px
-- Crop: 20%, Rotation: 15°, Brightness: 25%: Exposure: 25%, Blur: 2px, Noise: 5px
 
 For our  test dataset we did simple different Augmentation Options to obtain more images.
 - Flip (vertical and horizontal)
 - 90° rotate (counter, clockwise, upside, down)
-- rotation 5°
-- Exposure: 15% and 7%
+- rotation 5°, 15° and 30%
+- Brightness : 5% and 10%
 
 ### Dataset after data augmentation : 
-3016 images : 
+3503 images in total: 
 
-- 2527 images for the training dataset (~ 83%)
-- 489 images for the test dataset (~ 17%)
+- 2796 images for the training dataset (~ 80%)
+- 707 images for the test dataset (~ 20%)
 
 <p><img src="data/helpers/train_list.png"><img src="data/helpers/train_augmented.png"></p>
 <p><img src="data/helpers/test_list.png"><img src="data/helpers/test_augmented.png"></p>
