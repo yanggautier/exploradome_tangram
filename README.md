@@ -7,6 +7,7 @@ The specific application developed for the project is to apply object detection 
 A tangram is a dissection puzzle consisting of 7 flat polygons (5 triangles, 1 square and 1 parallelogram) which are combined to obtain a specific shape. 
 
 Within the framework of the project, 12 tangram selected shapes act as classes for the object detector:
+
     • boat(bateau), 
     
     • bowl(bol), 
@@ -36,17 +37,12 @@ Within the framework of the project, 12 tangram selected shapes act as classes f
 
 The project objective is to train a YOLOv4 model to provide accurate predictions when identifying the detected shape of the tangram while live solving the puzzle. 
 
-# Dataset Creation 
+# Data 
 
 ## 1. Video recording :
+The first step in collecting data was to record a video sample of tangram solving. 
 
-The first step was to create our image classification, so we had to determine the 12 possible figures and annotate them. To do this, we decided to film continuously (using the camera provided by exploradome to respect the conditions under which the algorithm will be used) members of our team performing in turn the 12 possible figures.
-
-
-
-
-
-## 2. Cut video into photos
+## 2. From video stream to images
 
 
 
