@@ -54,8 +54,9 @@ From the video we took screenshots of the classes in two versions, a perfect ver
 
 #### Installation
 Two installation methods are possible:
-    1. Go through the source code following the tutorial available at this GitHub link: https://github.com/tzutalin/labelImg)
-    2. Download the .exe and launch the application directly from desktop (download link https://tzutalin.github.io/labelImg/)
+
+- 1. Go through the source code following the tutorial available at this GitHub link: https://github.com/tzutalin/labelImg)
+- 2. Download the .exe and launch the application directly from desktop (download link https://tzutalin.github.io/labelImg/)
     
 ```python
 #### Installation for Mac
