@@ -334,7 +334,7 @@ Then the saved weight file that gave the highest mAP was used (MAP_yolov4_histor
 <p align="center" title="Test"><img src="data/helpers/test_map_summary.PNG"></p>
 
 #### Precision per class on the test set
-<p align="center"><img src="data/helpers/averageperclasstest.JPG" width="640"\></p>
+<p align="center"><img src="data/helpers/map_per_class.JPG" width="640"\></p>
 
 # FPS comparaison :  yolov4 vs yolov4-tiny
 
@@ -343,7 +343,7 @@ Then the saved weight file that gave the highest mAP was used (MAP_yolov4_histor
 As we might guessed, the difference is obvious. Particularly due to the fact that the number of neuron layers is lower in the model yolov4-tiny as well as the image processing is opered in real time (over 25 fps the human's eyes make no difference). The config for the experience was : 1080 GTX for the GPU, i5-9600k for CPU and we got the same results with or without GPU.
 
 
-# YOLOv4 Using Tensorflow : YOLOv4 and Yolov4 tiny 
+#  YOLOv4 and Yolov4 tiny using Tensorflow 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
 YOLOv4, YOLOv4-tiny Implemented in Tensorflow 2.0. 
