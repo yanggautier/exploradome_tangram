@@ -188,8 +188,8 @@ For our  test dataset we did simple different Augmentation Options to obtain mor
 - 2796 images for the training dataset (~ 80%)
 - 707 images for the test dataset (~ 20%)
 
-<p><img src="data/helpers/train_list.png"><img src="data/helpers/train_augmented_distribution.png"></p>
-<p><img src="data/helpers/test_list.png"><img src="data/helpers/test_augmented_distribution.png"></p>
+<p><img src="data/helpers/train_augmented_distribution_table.png"><img src="data/helpers/train_augmented_distribution.png"></p>
+<p><img src="data/helpers/test_augmented_distribution_table.png"><img src="data/helpers/test_augmented_distribution.png"></p>
 
 
 # Training on our Tangram dataset : YOLOv4 vs YOLOv4 tiny 
