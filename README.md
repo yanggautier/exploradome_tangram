@@ -33,6 +33,7 @@ Within the framework of the project, 12 tangram selected shapes act as classes f
     • turtle(tortue)
 
 <p align="center"><img src="data/helpers/tangrams.PNG" width="840"\></p>
+
 ## Objective
 
 The project objective is to train a YOLOv4 model to provide accurate predictions when identifying the detected shape of the tangram while live solving the puzzle. 
