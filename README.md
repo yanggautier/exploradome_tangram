@@ -7,30 +7,18 @@ The specific application developed for the project is to apply object detection 
 A tangram is a dissection puzzle consisting of 7 flat polygons (5 triangles, 1 square and 1 parallelogram) which are combined to obtain a specific shape. 
 
 Within the framework of the project, 12 tangram selected shapes act as classes for the object detector:
-
-    • boat(bateau), 
-    
-    • bowl(bol), 
-    
-    • bridge(pont), 
-    
-    • cat(chat), 
-    
-    • fox(renard), 
-    
-    • hammer(marteau), 
-    
-    • heart(coeur), 
-    
-    • house(maison), 
-    
-    • mountain(montagne), 
-    
-    • rabbit(lapin), 
-    
-    • swan(cygne), 
-    
-    • turtle(tortue)
+- boat(bateau),
+- bowl(bol), 
+- bridge(pont), 
+- cat(chat), 
+- fox(renard), 
+- hammer(marteau), 
+- heart(coeur), 
+- house(maison), 
+- mountain(montagne), 
+- rabbit(lapin), 
+- swan(cygne), 
+- turtle(tortue)
 
 <p align="center"><img src="data/helpers/tangrams.PNG" width="840"\></p>
 
@@ -45,21 +33,12 @@ The first step in collecting data was to record a video sample of tangram solvin
 
 ## 2. From video stream to images
 
-
-
-For cutting the video into images, we proceeded in different ways:
-
-- screenshots of the video with separate figures
-
+Further on, extract representative frames of the 12 shapes/classes and annotate the position of the object of interest within the frame.
+This was done by:
+- taking screenshots for each class 
 - python code for cutting the video every 3 seconds then manual sorting
-
 - video cutting test with the FreeVideo to JPG application (cut every 5 secondes)
 
-
-
-Methods retained :
-
-- screenshots and cutting with python and manual sorting
 
 
 
