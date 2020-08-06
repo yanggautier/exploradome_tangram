@@ -8,16 +8,27 @@ A tangram is a dissection puzzle consisting of 7 flat polygons (5 triangles, 1 s
 
 Within the framework of the project, 12 tangram selected shapes act as classes for the object detector:
     • boat(bateau), 
+    
     • bowl(bol), 
+    
     • bridge(pont), 
+    
     • cat(chat), 
+    
     • fox(renard), 
+    
     • hammer(marteau), 
+    
     • heart(coeur), 
+    
     • house(maison), 
+    
     • mountain(montagne), 
+    
     • rabbit(lapin), 
+    
     • swan(cygne), 
+    
     • turtle(tortue)
 
 
