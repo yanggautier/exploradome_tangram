@@ -1,40 +1,29 @@
 READ.ME
 
 
-# Exploradome Project 
-Exploradome's project is about an educational game for 6-year-old children. 
+# TangrIAm Project 
+The project is partnership between Exploradôme museum, OCTO Technology and Microsoft and it aims to introduce the concept and application of artificial intelligence to young children (6-year-old).
+The specific application developed for the project is to apply object detection to live tangram solving.
+A tangram is a dissection puzzle consisting of 7 flat polygons (5 triangles, 1 square and 1 parallelogram) which are combined to obtain a specific shape. 
 
-Their ambition is to awaken children's interest about the future with object recognition and computer vision in a fun and educational way through a tangram game.
-
-Our duty is to design an algorithm which will be able to determine the percentage of completeness of the given figure. 
-
-Thus the child will be able to see if he has more or less succeeded in achieving the figure he had to do.
-
-
-
-Therefore Exploradome provided us with a camera as well as the game table with the 12 tangrams.
-
-
-
-The tangrams are made with 7 parts :
-
-- 5 triangles, 
-
-- 1 square, 
-
-- and 1 parallelogram
-
-
-
-When you put them together, it creates 12 shapes :
-
-boat(bateau), bowl(bol), cat(chat), heart(coeur), swan(cygne), rabbit(lapin), house(maison), hammer(marteau), mountain(montagne), bridge(pont), fox(renard), turtle(tortue)
-
+Within the framework of the project, 12 tangram selected shapes act as classes for the object detector:
+    • boat(bateau), 
+    • bowl(bol), 
+    • bridge(pont), 
+    • cat(chat), 
+    • fox(renard), 
+    • hammer(marteau), 
+    • heart(coeur), 
+    • house(maison), 
+    • mountain(montagne), 
+    • rabbit(lapin), 
+    • swan(cygne), 
+    • turtle(tortue)
 
 
 ## Objective
 
-The objective of this project is to train a YOLO v4 model to recognize in real time the realization of tangram (record in live and make by children) and to make predictions on the realized shapes.
+The project objective is to train a YOLOv4 model to provide accurate predictions when identifying the detected shape of the tangram while live solving the puzzle. 
 
 # Dataset Creation 
 
