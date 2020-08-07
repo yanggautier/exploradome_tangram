@@ -32,6 +32,19 @@ boat(bateau), bowl(bol), cat(chat), heart(coeur), swan(cygne), rabbit(lapin), ho
 pip install opencv-python tensorflow
 ```
 
+## Using models
+
+The model files are contained inside `models`. To use them, either connect the camera to your device or select a video file.
+
+```
+python test_tangram -c [camera] -s [side : left | right] -o [output_folder] -m [model] -i [input folder (OPTIONAL)]
+```
+
+**Example:**
+```
+python test_tangram.py -c 1 -s left -o result_pics -m models\tangram_jason_mobilenet_final_06082020.h5
+```
+
 ## Approach taken
 
 Find the best accuracy with transfert learning model (CNN with Tensorflow) - see the Google Sheet
