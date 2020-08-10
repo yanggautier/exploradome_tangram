@@ -1,10 +1,10 @@
-# Exploradome_tangram
-Tangram form detection from live video stream
+# TangrIAm Project
 
-The tangram is a dissection puzzle consisting of seven flat polygons, called tans, which are put together to form shapes. 
-The objective is to replicate a pattern (given only an outline) using all seven pieces without overlap. 
+The project is partnership between Exploradôme museum, OCTO Technology and Microsoft and it aims to introduce the concept and application of artificial intelligence to young children. The specific application developed for the project is to apply object detection to live tangram solving.
 
-The 12 shapes are:
+A tangram is a dissection puzzle consisting of seven flat polygons (5 triangles, 1 square and 1 parallelogram) which are combined to obtain a specific shape. The objective is to replicate a pattern (given only an outline) using all seven pieces without overlap.
+
+Within the framework of the project, 12 tangram selected shapes act as classes for the object detector:
 
 ![image](https://drive.google.com/uc?export=view&id=1O_vfKNLHZ7HEEBNUZfEWRGjRe7QnCtsS)
 
@@ -12,9 +12,7 @@ boat(bateau), bowl(bol), cat(chat), heart(coeur), swan(cygne), rabbit(lapin), ho
 
 ## Objective
 
-The objective of this project is to train a model to recognize in real time the realization of tangram (record in live and make by children) and to make predictions on the realized shapes.
-
-Here we will use a model for the multiclass image classification by using a pre-trained TensorFlow 2 (using transfert learning framework).
+Classify tangram shapes from a live video stream using transfer learning as the main basis of our model.
 
 ## Table Of Contents
 -  [Installation and Usage](#Installation-and-Usage)
