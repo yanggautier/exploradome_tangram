@@ -154,7 +154,7 @@ For the test dataset the augmentation options are listed below:
 - 2796 images for the training dataset (~ 80%)
 - 707 images for the test dataset (~ 20%)
 
-<p><img src="data/helpers/train_augmented_distribution_table.png"></p>
+<p><img src="data/helpers/train_augmented_distribution_tables.png"></p>
 <p><img src="data/helpers/test_augmented_distribution_tables.png"></p>
 
 
