@@ -106,7 +106,7 @@ Dataset size before data augmentation:
 
 The dataset was split in a train dataset with 69 images and a test dataset with 59 images before applying data augmentation:
 
-<p align="center"><img src="data/helpers/augmented_distribution_tables.PNG"></p>
+<p align="center"><img src="data/helpers/augmented_distribution_tables.png"></p>
 
 ## 5. Data augmentation 
 
