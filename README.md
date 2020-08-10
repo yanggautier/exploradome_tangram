@@ -25,7 +25,7 @@ Within the framework of the project, 12 tangram selected shapes act as classes f
 - turtle (tortue)
 ```
 
-<p align="center"><img src="data/helpers/tangrams.png" width="840"\></p>
+<p align="center"><img src="data/helpers/tangrams.PNG" width="840"\></p>
 
 ## Objective
 
@@ -106,7 +106,7 @@ Dataset size before data augmentation:
 
 The dataset was split in a train dataset with 69 images and a test dataset with 59 images before applying data augmentation:
 
-<p align="center"><img src="data/helpers/augmented_distribution_tables.png"></p>
+<p align="center"><img src="data/helpers/augmented_distribution_tables.PNG"></p>
 
 ## 5. Data augmentation 
 
