@@ -340,16 +340,14 @@ Make sure to use CUDA Toolkit version 10.1 as it is the proper version for the T
 ## Using custom trained YOLOv4 weights
 
 <strong>Note:</strong>  To use our own weights:
-- We rename our best weights file to 'custom.weights' and pasted it into the 'data/' folder 
-- We pasted the custom.names file into the `data/classes/` folder
+- We rename our best weights file to 'custom.weights' and pasted it into the 'data/' folder.
+- We pasted the custom.names file into the `data/classes/` folder : 
 <p align="center"><img src="data/helpers/custom_names.PNG" width="240"\></p>
-- We changed on line 14 of `core/config.py` file.
-Update the code to point at your custom .names file as seen below. (my custom .names file is called custom.names but yours might be named differently).
-
+- We changed line 14 of `core/config.py` file and updated the code to point at your custom.names file:
 <p align="center"><img src="data/helpers/custom_config.png" width="640"\></p>
 
 
-**Note** <a href="https://github.com/Lucile-S/exploradome_tangram/blob/yolo---team1/data/custom.weights">Here is the tiny yolov4 custom weight (`custom.weights`) file that is present in the ./data folder</a>
+**Note** <a href="https://github.com/Lucile-S/exploradome_tangram/blob/yolo---team1/data/custom.weights"> Here is the tiny yolov4 custom weight (`custom.weights`) file that is present in the ./data folder</a>
 
 
 
