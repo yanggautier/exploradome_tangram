@@ -279,7 +279,6 @@ NOTE: If you think your final weights file has overfitted then it is important t
 
 The table below shows that between the iterations 1000 to 4000 all metrics are increasing. Further on, between the iterations 4000 to 6000 the Mean Average Precision (mAP) starts decreasing. Continuing training, mAP rises to 0.97 (score already reached at 4000 iterations). The mAP overall best result is obtained between iterations 3000 to 3800.
 
-<p align="center"><img src="data/helpers/tableaucomp.png" width="640"\></p>
 
 <p align="center" title="Test"><img src="data/helpers/test_map_summary.PNG"></p>
 
