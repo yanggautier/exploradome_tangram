@@ -160,34 +160,45 @@ For the test dataset the augmentation options are listed below:
 
 
 # Model training: YOLOv4 tiny
+We choose to implement the tiny version of YOLOv4 on the dataset for much faster training and much faster detection.
 
-The YOLOv4 Darknet tiny (from AlexeyAB's GitHub repository) was trained using Google Colab.  This option facilitates model deployment and rapid training while providing free GPU usage.  The model training is inspired by the respective tutorial of "the AI GUY":
+The primary difference between YOLOv4 tiny and YOLOv4 is that the network size is dramatically reduced. The number of convolutional layers backbone are compressed (137 for yolov4 vs 29 for yolov4 tiny). The number of YOLO layers are two instead of three and there are fewer anchor boxes for prediction. The differences between the two networks can be noted in the config files:
+- [yolov4-tiny.cfg](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4-tiny.cfg)
+- [yolov4-tiny](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4.cfg)
+YOLOv4 tiny performance was equally tested on coco dataset. In all, YOLOv4 tiny inference time is roughly 8x faster compared to YOLOv4 and its performance is roughly 2/3 that of YOLOv4 on MS COCO). On small custom detection tasks that are more tractable, there is less performance degradation.
 
--  Colab link on how to Train YOLOv4 Custom Object Detector : https://colab.research.google.com/drive/1_GdoqCJWXsChrOiY8sZMr_zbr_fH-0Fg?usp=sharing#scrollTo=qaONUTI2l4Sf
+The YOLOv4 Darknet (from AlexeyAB's GitHub repository) was trained using Google Colab. This option facilitates model deployment and rapid training while providing free GPU usage.  The model training is inspired by the respective tutorial of "the AI GUY":
+
+-  Colab link on how to Train YOLOv4 and YOLOv4 tiny Custom Object Detector : https://colab.research.google.com/drive/1_GdoqCJWXsChrOiY8sZMr_zbr_fH-0Fg?usp=sharing#scrollTo=qaONUTI2l4Sf, https://colab.research.google.com/drive/1PWOwg038EOGNddf6SXDG5AsC8PIcAe-G#scrollTo=nBnwpBV5ZXxQ
 -  Youtube link for building and training Custom Object Detector : https://www.youtube.com/watch?v=mmj3nxGT2YQ
 -  Github link of YOLOv4 cloud tutorial: https://github.com/theAIGuysCode/YOLOv4-Cloud-Tutorial/tree/master/yolov4
 
-The Google Colab notebook of the tangram dataset is available on this link: 
-https://colab.research.google.com/drive/1mC3cBPB1w9W4tKD1ZAondm0pSfohXrzm?usp=sharing
+The Google Colab notebook of our tangram model training is available on this link: 
+https://colab.research.google.com/drive/1-SU3dltpVubOOeyuaBgCNdPsHaIqlfI2?usp=sharing
 
-Custom YOLOv4 detector training requires :
+### 1. Setting up
+Custom YOLOv4 tiny detector training setup follows the same steps as for YOLOv4, it requires :
 
 - A labeled custom dataset in the YOLO Darknet format: each image has to have a corresponding `.txt` file with the object label and the object bounding box coordinates (e.g label coord_1 coord_2 coord_3 coord_4)
 - A custom `.cfg` file
 - `obj.data` and `obj.names` files
 - A `train.txt` file (`test.txt` is optional)
-
-### 1. Setting up
+- Downloading  of the yolov4-tiny weights
+```python
+# download the newly released yolov4-tiny weights
+%cd /content/darknet
+!wget https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.weights
+!wget https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.conv.29
+```
 
 The required configuration files in the local `darknet` drive are shown in the image below : 
 ![Yolov3 configuration files cheat sheet.jpg](http://blog.ibanyez.info/download/B20190410T000000072.png)
 
 A cheat sheet is available [here](http://blog.ibanyez.info/download/B20190410T000000072.png).
 
-
 #### the `.cfg` (configuration) file
 
-The `.cfg` file named "yolov4-obj.cfg" was edited to include the number of classes (12 different tangram shapes) used for the project. According to the model developer’s tutorial, the first lines of the `.cfg` file were modified to following:
+The `.cfg` file named "custom-yolov4-tiny-obj.cfg" was edited to include the number of classes (12 different tangram shapes) used for the project. According to the model developer’s tutorial, the first lines of the `.cfg` file were modified to following:
 
 ```bash
 batch = 64 
@@ -199,11 +210,11 @@ max_batches = 24000   # ie :  (# of classes) * 2000 (but no less than 6000 so if
 steps = 19200,21600  # ie: 80% of max_batches, 90% of max_batches (so here our max_batches = 24000)
 ```
 
-Next, `classes = 12` was included in the three YOLO layers (line 970, line 1058 and line 1146) and `filters = 51` in the three convolutional layers before the YOLO layers (lines 963, 1051 and line 1139).
+Next, `classes = 12` was included in the two YOLO layers (ie: line 220 and line 268) and `filters = 51` in the two convolutional layers before the YOLO layers (ie: lines 212 and line 262). 
 
-The `filters` parameter is set based of the following formula: filters = (# of classes + 5) * 3 (so if you are training for one class then your filters = 18, but if you are training for 12 classes then your filters = 51).
+The `filters` parameter is set based of the following formula:  filters = (# of classes + 5) * 3 (so if you are training for one class then your filters = 18, but if you are training for 12 classes then your filters = 51).
 
-**Optional:** When running into memory issues or finding the training taking a super long time, change one line from random = 1 to random = 0 in each of the three YOLO layers in the `.cfg`, to speed up training, however, at the expense of the accuracy of model. This trick will also help save memory if you run into any memory issues.
+**Optional:** When running into memory issues or finding the training taking a super long time, change one line from random = 1 to random = 0 in each of the two YOLO layers in the `.cfg`, to speed up training, however, at the expense of the accuracy of model. This trick will also help save memory if you run into any memory issues.
 
 #### `obj.names` and `obj.data` files
 
@@ -233,7 +244,7 @@ classes = 12
 train =  data/train.txt
 valid =  data/test.txt
 names = data/obj.names
-backup = /mydrive/DeepL/Projet_tangram/backup
+backup = /mydrive/DeepL/Projet_tangram/backup_TINY
 ```
 
 #### `train.txt` and `test.txt`
@@ -246,54 +257,30 @@ The complete `darknet` folder including the custom files were uploaded to Google
 
 ### 2. Training
 
-The model trained for over 8000 iterations (over sequential training periods due to Google Colab runtime getting disconnected, for a total period of ~ 2 days). By saving `yolov4-obj_"nb_iter".weights` every 1000 iterations on Google Drive, the model was able to continue training from the latest checkpoint using the saved weights in `yolov4-obj_last.weights` while monitoring the T Mean Average Precision (mAP). 
-
-Run the following command on multiple of the saved weights from the training to see the mAP value.  Compare and find the weights with the highest mAP as that is the most accurate one!
-
-```python
-!./darknet detector test data/obj.data cfg/yolov4-custom.cfg /mydrive/.. yolov4-obj_last.weights /mydrive/images/car2.jpg -thresh 0.3
-```
-
-### 3. Mean Average Precision (mAP)
-
-The table below shows that between the iterations 1000 to 4000 all metrics are increasing. Further on, between the iterations 4000 to 6000 the Mean Average Precision (mAP) starts decreasing. Continuing training,  mAP rises to 0.97 (score already reached at 4000 iterations). The mAP overall best result is obtained between iterations 3000 to 3800.
-
-<p align="center"><img src="data/helpers/tableaucomp.png" width="640"\></p>
-
-## YOLOv4 tiny
-
-Implement the tiny version of YOLOv4 on the dataset for much faster training and much faster detection.
-
-- Colab link for training YOLOv4-tiny on custom dataset: https://colab.research.google.com/drive/1PWOwg038EOGNddf6SXDG5AsC8PIcAe-G#scrollTo=nBnwpBV5ZXxQ
-
-In addition, YOLOv4 tiny performance is equally tested on the dataset. In all, YOLOv4 tiny inference time is roughly 8x faster compared to YOLOv4 and its performance is roughly 2/3 that of YOLOv4 on MS COCO). On small custom detection tasks that are more tractable, there is less performance degradation.
-
-The primary difference between YOLOv4 tiny and YOLOv4 is that the network size is dramatically reduced. The number of convolutional layers in the CSP backbone are compressed. The number of YOLO layers are two instead of three and there are fewer anchor boxes for prediction. The differences between the two networks can be noted in the config files:
-- [yolov4-tiny.cfg](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4-tiny.cfg)
-- [yolov4-tiny](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4.cfg)
-  
-### 1. Setting up
-YOLOv4 tiny training setup follows the same steps as for YOLOv4, with exception of the light modifications below:
-- Download the yolov4-tiny weights
+The model trained for over 24000 iterations (it takes ~ 4/5 hours). The `yolov4-tiny-obj_"nb_iter".weights` files were automatically saved every 1000 iterations on Google Drive.
+Note : if Google Colab runtime getting disconnected, the model is able to continue training from the latest checkpoint using the saved weights in `yolov4-obj_last.weights`. 
 
 ```python
- #download the newly released yolov4-tiny weights
-%cd /content/darknet
-!wget https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.weights
-!wget https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.conv.29
+!./darknet detector train data/obj_TINY.data cfg/custom-yolov4-tiny-obj.cfg yolov4-tiny.conv.29 -dont_show -map
 ```
-- Configure the YOLOv4_tiny_config file : this changing the ‘classes = 12’ in the two YOLO layers (ie: line 220 and line 268) and ‘filters = 51’ in the two convolutional layers before the YOLO layers (ie: lines 212 and line 262). 
-  
-### 2. Training
-
-The model trained for over 24000 iterations (5 hours). The `yolov4-tiny-obj_"nb_iter".weights` files were automatically saved every 1000 iterations on Google Drive.
+After training, we obtained a chart of our average loss vs. iterations . For a model to be 'accurate', it is recommanted to aim for a loss under 2.
 
 <p align="center" title="Test"><img src="data/helpers/chart_tiny_new_dataset.png"></p>
 
 ### 3. Mean Average Precision (mAP)
-The mAP overall best result is obtained between iterations 9000 to 10000.
+The Mean Average Precision (mAP) of our Model  was checked  by runnning the following command :
 
-#### Test
+```python
+!./darknet detector map data/obj_TINY.data cfg/custom-yolov4-tiny-obj.cfg /mydrive/DeepL/Projet_tangram/backup_TINY/yolov4-tiny-obj_1000.weights
+```
+
+We ran it on multiple of the saved weights to compare and find the weights with the highest mAP as that is the most accurate one. 
+NOTE: If you think your final weights file has overfitted then it is important to run these mAP commands to see if one of the previously saved weights is a more accurate model for your classes.
+
+The table below shows that between the iterations 1000 to 4000 all metrics are increasing. Further on, between the iterations 4000 to 6000 the Mean Average Precision (mAP) starts decreasing. Continuing training, mAP rises to 0.97 (score already reached at 4000 iterations). The mAP overall best result is obtained between iterations 3000 to 3800.
+
+<p align="center"><img src="data/helpers/tableaucomp.png" width="640"\></p>
+
 <p align="center" title="Test"><img src="data/helpers/test_map_summary.PNG"></p>
 
 #### Class precision on the test set
@@ -307,7 +294,7 @@ In the image above, there is a gap between the 2 fps. The difference is that YOL
 
 **Note** The computer used for this test had an i5-9600k as cpu.
 
-#  YOLOv4 and YOLOv4 tiny using TensorFlow 
+#  YOLOv4 tiny using TensorFlow 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
 To implement YOLOv4, YOLOv4-tiny in Tensorflow 2.0 convert YOLOv4, tiny weights to `.pb` format.
