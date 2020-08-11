@@ -1,13 +1,16 @@
-from .tangram_game import tangram_game, tangram_game_live_test
-from .prepare_tangrams_dataset import get_files
 import re
 import os
-from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, classification_report
+
 import seaborn as sns
 import matplotlib.pyplot as plt
+from .tangram_game import tangram_game
+from .utils import get_files
+from .processing import *
+from .predictions import *
+from sklearn.metrics import classification_report, confusion_matrix
 
 # test statiques
-def get_classification_report_pics(dataset_path=None):
+def get_classification_report_pics(dataset_path=None, game=tangram_game):
     """
     from a set of images, get global accuracy, precision, recall
     """
@@ -24,8 +27,7 @@ def get_classification_report_pics(dataset_path=None):
 
     # for each image, get prediction by our algorithm
     for label, img_path in images: 
-        predictions = tangram_game(image = img_path)
-
+        predictions = game(image=img_path, prepro=preprocess_img_2, pred_func=get_predictions_with_distances)
         if predictions is None:
             continue
 
@@ -45,35 +47,6 @@ def get_classification_report_pics(dataset_path=None):
     plt.show()
 
     return report
-
-
-# test dynamiques
-def get_classification_report_videos(video_folder):
-    videos = []
-    correct_predictions = 0
-    sides = ["right", "left", "right", "right", "left", "right", 
-            "left", "right", "left", "right", "left", "right", "left", "right"]
-
-    for folder, sub_folders, files in os.walk(video_folder):
-        for file in files:
-            filename, file_extension = os.path.splitext(file) # we just want the filename to save the relative path of the video
-            file_path = os.path.join(folder, file)
-
-            if file.endswith(".mov"):
-                pattern = re.compile(r"[a-zA-Z]+") # in case there is any number or underscore in the name
-                label = pattern.match(filename).group()
-                videos.append((label, file_path))
-                print((label, file_path))
-    
-    i = 0
-    for label, video_path in videos:
-        prediction = tangram_game_live_test(side=sides[i], video=video_path)
-        i += 1
-
-        if prediction == label:
-            correct_predictions += 1
-
-        print(f'- label : {label}\n- prediction: {prediction}\n- correct_predictions: {correct_predictions}\n========\n')
 
 
     

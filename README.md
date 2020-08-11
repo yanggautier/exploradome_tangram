@@ -33,11 +33,15 @@ Within the framework of the project, 12 tangram selected shapes act as classes f
  - Swan (Cygne)
  - Turtle (Tortue)
 
+<p align="center"><img width=100% src="https://github.com/Nohossat/exploradome_tangram/blob/numpy---team-4/data/Montages.jpg"></p>
+
+
 ## Installation
 
 ```shell
-git clone https://github.com/Nohossat/exploradome_tangram/tree/numpy---team-4
+git clone https://github.com/k13var/exploradome_tangram/
 cd exploradome_tangram
+git checkout numpy---team-4
 python -m venv venv/
 source venv/Scripts/activate # Windows
 source venv/bin/activate # Mac
@@ -46,11 +50,13 @@ pip install -r requirements.txt
 
 ## Execution
 
-### With an external webcab
+
+### With an external webcam
 ```
 # connect an external webcam and launch the script, specifying the board side of interest (in this example right)
 python3 main.py --mode 1 --side right
 ```
+
 ### With a video saved locally
 ```
 # launch the script using a video saved locally, specifying the board side of interest (in this example left)
@@ -75,20 +81,38 @@ Our approach has been to avoid the use of ML and DL techniques and leverage Open
 - Compute centroids of each geometric piece.
 - Calculate distances between each pair of pieces (resulting in 21 data points if all pieces are on the board).
 - Compare this distance scorecard to the distance scorecard of each of the 12 target outlines (using an RMSE distance metric over the 21 distance readings)
-- Transforming the RMSE into a probability distribution.
+- Transform RMSE into a probability distribution.
+
+### Pre-processing
+
+ 1) Our original image
+
+<p align="center"><img width=30% src="https://github.com/Nohossat/exploradome_tangram/blob/numpy---team-4/data/original.JPG"></p>
+
+ 2) Detect edges
+ 
+<p align="center"><img width=30% src="https://github.com/Nohossat/exploradome_tangram/blob/numpy---team-4/data/canny_edge.JPG"></p>
+
+3) Find the form 
+ 
+ <p align="center"><img width=30% src="https://github.com/Nohossat/exploradome_tangram/blob/numpy---team-4/data/Shapes_only.JPG"></p>
+
 
 ## Classification results
 
-Frames per seconds : 333 fps
+Frames per seconds : 20 fps
+
 
 ### Prediction results in an ideal testing environment
 The below results are valid for "final" predictions, ie the class predicted by the program once the correct form was finalized. 
 
-<p align="center"><img width=60% src="https://github.com/Nohossat/exploradome_tangram/blob/numpy---team-4/data/metric.jpg"></p>
-<p align="center"><img width=60% src="https://github.com/Nohossat/exploradome_tangram/blob/numpy---team-4/data/matrice.png"></p>
 
 ### Prediction results in a more challenging testing environment
 Results below were obtained using a more challenging testing dataset (incomplete form, slight mistake in the final form, objects between the camera and the board, challenging light conditions...) and are probably closer to the expected production environment.
+
+![Confusion matrix](./tests/confusion_matrix.png)
+
+![Classification metrics](./tests/classification_metrics.png)
 
 
 ## Project metainformation
@@ -108,5 +132,12 @@ To that goal, changing the preprocessing pipeline (from a binary threshold to ca
 - Our first approach was to use Hu Moments to compare the player's shape to each of the 12 classes,  while benefiting from  Hu Moments' invariance to rotation, scale and position. However, this approach turned out to give poor predictions for incomplete shapes which are in the process of construction. Another problem was an overly sensitive reaction to camera obstruction (when a player move a piece of tangram, he can obstruct the camera while doing it) which motivates our switch to more robust data points taken from piece centroids' relative distance to each other.
 
 # Team
+
+[Nohossat](https://github.com/Nohossat)  
+[Bastien](https://github.com/BasCR-hub)  
+[Nicolas](https://github.com/nicolaszys)  
+[Renata](https://github.com/renatakaczor)  
+[Gauthier](https://github.com/yanggautier)  
 [Contribution guidelines for this project](https://github.com/Nohossat)
+
 
