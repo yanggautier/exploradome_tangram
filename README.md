@@ -297,8 +297,6 @@ The table below shows that between the iterations 1000 to 4000 all metrics are i
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
 To implement, YOLOv4-tiny in Tensorflow 2.0 convert YOLOv4 tiny weights to `.pb` format.
-<p align="center"><img src="data/helpers/demo.gif"\></p>
-
 Here we discribe the  different steps to do it :
 ## Getting Started
 ### 1. Cloning the "AI GUY" repository : https://github.com/theAIGuysCode/yolov4-custom-functions 
