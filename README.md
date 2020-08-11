@@ -279,10 +279,14 @@ NOTE: If you think your final weights file has overfitted then it is important t
 
 The table below shows that between the iterations 1000 to 4000 all metrics are increasing. Further on, between the iterations 4000 to 6000 the Mean Average Precision (mAP) starts decreasing. Continuing training, mAP rises to 0.97 (score already reached at 4000 iterations). The mAP overall best result is obtained between iterations 3000 to 3800.
 
+**MAPs on the TRAIN**
+<p align="center" title="Test"><img src="data/helpers/train_map_summary.PNG"></p>
 
+
+**MAPs on the TEST**
 <p align="center" title="Test"><img src="data/helpers/test_map_summary.PNG"></p>
 
-#### Class precision on the test set
+**Class precision on the test set**
 <p align="center"><img src="data/helpers/map_per_class.JPG"></p>
 
 # FPS comparaison :  yolov4 vs yolov4-tiny
