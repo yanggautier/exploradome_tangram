@@ -293,10 +293,12 @@ The table below shows that between the iterations 1000 to 4000 all metrics are i
 #  YOLOv4 tiny using TensorFlow 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
-To implement YOLOv4, YOLOv4-tiny in Tensorflow 2.0 convert YOLOv4, tiny weights to `.pb` format.
+To implement, YOLOv4-tiny in Tensorflow 2.0 convert YOLOv4 tiny weights to `.pb` format.
 <p align="center"><img src="data/helpers/demo.gif"\></p>
 
-##  1. Getting Started
+Here we discribe the  different steps to do it :
+##  1. Getting Started : Cloning the "AI GUY" repository : https://github.com/theAIGuysCode/yolov4-custom-functions and creating a working environnemnent 
+
 ### Conda (Recommended)
 
 ```bash
@@ -339,10 +341,10 @@ Check out how YOLOv4 compares to other object detection systems.
 <p align="center"><img src="data/helpers/performance.png" width="640"\></p>
 
 
-### Using custom trained YOLOv4 weights
+## Setting-up : using custom trained YOLOv4 weights
 
-<strong>Note:</strong>  If you want to use  you own weights:
-Copy and paste your custom .weights file into the 'data' folder and copy and paste your custom .names into the `data/classes/` folder.
+<strong>Note:</strong>  To use  our own weights:
+Copy and paste custom .weights file into the 'data' folder and copy and paste your custom .names into the `data/classes/` folder.
 The only change within the code you need to make in order for your custom model to work is on line 14 of `core/config.py` file.
 Update the code to point at your custom .names file as seen below. (my custom .names file is called custom.names but yours might be named differently).
 
