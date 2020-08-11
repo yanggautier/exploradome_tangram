@@ -291,16 +291,19 @@ The table below shows that between the iterations 1000 to 4000 all metrics are i
 
 
 #  YOLOv4 tiny using TensorFlow 
+
+**Note: Performance** Check out how YOLOv4 compares to other object detection systems
+<p align="center"><img src="data/helpers/performance.png" width="640"\></p>
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
 To implement, YOLOv4-tiny in Tensorflow 2.0 convert YOLOv4 tiny weights to `.pb` format.
 <p align="center"><img src="data/helpers/demo.gif"\></p>
 
 Here we discribe the  different steps to do it :
-##  1. Getting Started : Cloning the "AI GUY" repository : https://github.com/theAIGuysCode/yolov4-custom-functions and creating a working environnemnent 
-
-### Conda (Recommended)
-
+## Getting Started
+### 1. Cloning the "AI GUY" repository : https://github.com/theAIGuysCode/yolov4-custom-functions 
+### 2. Creating a working environnemnent 
+#### Conda (Recommended)
 ```bash
 # Tensorflow CPU
 conda env create -f conda-cpu.yml
@@ -310,8 +313,7 @@ conda activate yolov4-cpu
 conda env create -f conda-gpu.yml
 conda activate yolov4-gpu
 ```
-
-### Pip
+#### Pip
 
 ```bash
 
@@ -334,18 +336,14 @@ pip install -r requirements-gpu.txt
 
 Make sure to use CUDA Toolkit version 10.1 as it is the proper version for the TensorFlow version used in this repository: https://developer.nvidia.com/cuda-10.1-download-archive-update2
 
-###  Performance
 
-Check out how YOLOv4 compares to other object detection systems.
+## Using custom trained YOLOv4 weights
 
-<p align="center"><img src="data/helpers/performance.png" width="640"\></p>
-
-
-## Setting-up : using custom trained YOLOv4 weights
-
-<strong>Note:</strong>  To use  our own weights:
-Copy and paste custom .weights file into the 'data' folder and copy and paste your custom .names into the `data/classes/` folder.
-The only change within the code you need to make in order for your custom model to work is on line 14 of `core/config.py` file.
+<strong>Note:</strong>  To use our own weights:
+- We rename our best weights file to 'custom.weights' and pasted it into the 'data/' folder 
+- We pasted the custom.names file into the `data/classes/` folder
+<p align="center"><img src="data/helpers/custom_names.PNG" width="240"\></p>
+- We changed on line 14 of `core/config.py` file.
 Update the code to point at your custom .names file as seen below. (my custom .names file is called custom.names but yours might be named differently).
 
 <p align="center"><img src="data/helpers/custom_config.png" width="640"\></p>
