@@ -159,11 +159,9 @@ For the test dataset the augmentation options are listed below:
 <p><img src="data/helpers/test_augmented_distribution_tables.png"></p>
 
 
-# Model training: YOLOv4 vs YOLOv4 tiny
+# Model training: YOLOv4 tiny
 
-## YOLOv4
-
-The YOLOv4 Darknet (from AlexeyAB's GitHub repository) was trained using Google Colab.  This option facilitates model deployment and rapid training while providing free GPU usage.  The model training is inspired by the respective tutorial of "the AI GUY":
+The YOLOv4 Darknet tiny (from AlexeyAB's GitHub repository) was trained using Google Colab.  This option facilitates model deployment and rapid training while providing free GPU usage.  The model training is inspired by the respective tutorial of "the AI GUY":
 
 -  Colab link on how to Train YOLOv4 Custom Object Detector : https://colab.research.google.com/drive/1_GdoqCJWXsChrOiY8sZMr_zbr_fH-0Fg?usp=sharing#scrollTo=qaONUTI2l4Sf
 -  Youtube link for building and training Custom Object Detector : https://www.youtube.com/watch?v=mmj3nxGT2YQ
