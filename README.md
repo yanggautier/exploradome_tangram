@@ -279,14 +279,14 @@ NOTE: If you think your final weights file has overfitted then it is important t
 
 The table below shows that between the iterations 1000 to 4000 all metrics are increasing. Further on, between the iterations 4000 to 6000 the Mean Average Precision (mAP) starts decreasing. Continuing training, mAP rises to 0.97 (score already reached at 4000 iterations). The mAP overall best result is obtained between iterations 3000 to 3800.
 
-**MAPs on the TRAIN set : **
+**MAPs on the TRAIN set:**
 <p align="center" title="Test"><img src="data/helpers/train_map_summary.PNG"></p>
 
 
-**MAPs on the TEST set : **
+**MAPs on the TEST set:**
 <p align="center" title="Test"><img src="data/helpers/test_map_summary.PNG"></p>
 
-**Class precision on the TEST set**
+**Class precision on the TEST set:**
 <p align="center"><img src="data/helpers/map_per_class.JPG"></p>
 
 
@@ -296,7 +296,7 @@ The table below shows that between the iterations 1000 to 4000 all metrics are i
 To implement YOLOv4, YOLOv4-tiny in Tensorflow 2.0 convert YOLOv4, tiny weights to `.pb` format.
 <p align="center"><img src="data/helpers/demo.gif"\></p>
 
-## Getting Started
+##  1. Getting Started
 ### Conda (Recommended)
 
 ```bash
@@ -351,9 +351,9 @@ Update the code to point at your custom .names file as seen below. (my custom .n
 
 **Note** <a href="https://github.com/Lucile-S/exploradome_tangram/blob/yolo---team1/data/custom.weights">Here is the tiny yolov4 custom weight (`custom.weights`) file that is present in the ./data folder</a>
 
-##  YOLOv4-tiny using TensorFlow (tf, .pb model) 
 
-### Step 1: Convert darknet YOLOv4 tiny weights to TensorFlow
+
+## 2. Convert darknet YOLOv4 tiny weights to TensorFlow
 
 ```bash
 # Convert darknet weights to tensorflow 
@@ -362,8 +362,8 @@ Update the code to point at your custom .names file as seen below. (my custom .n
 python save_model.py --weights ./data/custom.weights --output ./checkpoints/custom-tiny-416 --input_size 416 --model yolov4  --tiny
 ```
 
-### Step 2: Run YOLO4 tiny TensorFlow model
-##### On image
+## 3. Run YOLO4 tiny TensorFlow model
+### On image
 
 ```bash
 # STEP 2
@@ -371,70 +371,21 @@ python save_model.py --weights ./data/custom.weights --output ./checkpoints/cust
 python detect.py --weights ./checkpoints/custom-tiny-416 --size 416 --model yolov4 --images ./data/images/maison_3.png --tiny
 ```
 
-##### On video
+### On video
 
 ```bash
 # Run custom yolov4 model on video
 python detect_video.py --weights ./checkpoints/custom-tiny-416 --size 416 --model yolov4 --video ./data/video/tangram_video.mp4 --output ./detections/results.avi --tiny
 ```
-##### On  webcam
+### On  webcam
 
 ```bash
 # Run yolov4 on webcam
 python detect_video.py --weights ./checkpoints/custom-tiny-416 --size 416 --model yolov4 --video 0 --output ./detections/results.avi --tiny
 ```
 
-##  YOLOv4 using TensorFlow (tf, .pb model)
 
-To implement YOLOv4 using TensorFlow, convert the `yolov4_best.weights` into the corresponding TensorFlow model files and then run the model.
-
-Rename the `yolov4_best.weights` to `custom.weights`
-
-### Step 1 : Convert darknet YOLOv4 weights to TensorFlow
-
-```bash
-# Convert darknet weights to tensorflow
-# custom yolov4 
-# but if you want to use new weights, you will have to use this commande transform them to tensorflow 
-python save_model.py --weights ./data/custom.weights --output ./checkpoints/custom-416 --input_size 416 --model yolov4 
-```
-### Step 2 : Run yolov4 tensorflow model
-#### On image
-
-```bash
-# Run custom yolov4 tensorflow model 
-python detect.py --weights ./checkpoints/custom-416 --size 416 --model yolov4 --images ./data/images/car.jpg
-```
-#### On video
-
-```bash
-# Run custom yolov4 model on video
-python detect_video.py --weights ./checkpoints/custom-416 --size 416 --model yolov4 --video ./data/video/tangram_video.mp4 --output ./detections/results.avi
-```
-#### On webcam
-
-```bash
-# Run yolov4 on webcam
-python detect_video.py --weights ./checkpoints/custom-416 --size 416 --model yolov4 --video 0 --output ./detections/results.avi
-```
-If you want to run yolov3 or yolov3-tiny change ``--model yolov3`` and .weights file in above-mentionned commands.
-
-**>Note** You can also run the detector on multiple images at once by changing the --images flag to ``--images "./data/images/kite.jpg, ./data/images/dog.jpg"``
-
-### Results 
-#### Image(s) (TensorFlow)
-
-You can find the output detections saved in the 'detections' folder.
-
-#### Pre-trained YOLOv4 Model Example
-
-<p align="center"><img src="data/helpers/result.png" width="640"\></p>
-
-#### Custom YOLOv4 Model Example (see video link above to train this model)
-
-<p align="center"><img src="data/helpers/custom_result.png" width="640"\></p>
-
-#### Result Video
+## 4.  Result Video
 
 The output video will be saved wherever the --output flag points to. By default (in the absence of a flag), the video will not be saved.
 
