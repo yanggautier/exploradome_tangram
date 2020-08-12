@@ -399,7 +399,9 @@ python detect_video.py --weights ./checkpoints/custom-tiny-416 --size 416 --mode
 ```
 
 We added to detect_video.py a custom flag called `output_file` in order to ouput an external file (named `./detections/boxes_and_predictions.txt`by default). 
+
 This file contains, for each frame of the video, a list of dictionnaries (`object position and object prediction`) with detected trangram bounding box coordinates (upper left and  bottom right corner points --> x1, y1, x2, y2 format - in units of number of pixels) and associated classe probabilies. 
+
 In addition, a flag  `sort_by`  allow to sort the predictions by descending order and keep a specified number (`max_classes` variable) of classes.
 
 Example of the output file from one frame with 2 tangrams detected using the `sort_by 5` option that returns the top 5 classe propabilies : 
