@@ -3,14 +3,20 @@ import random
 import numpy as np
 import tensorflow as tf
 import operator
+import sys
+
+
+
 
 
 def output_box(all_boxes, all_preds, boxes, bboxes, class_names):
+    
+     #  matching bounding boxes non formated from combined_non_max_suppression, with their respective classe predictions (pred_conf tensor) using index
 
-    #  matching bounding boxes non formated from combined_non_max_suppression, with their respective classe predictions (pred_conf tensor) using index
+    
     idx=[np.where(all_boxes==boxes.numpy()[0][i])[0][0] for i in range(len(boxes.numpy()[0]))]
-    proba_bboxes= [all_preds[i] for i in idx]
- 
+    proba_bboxes=[all_preds[i] for i in idx]
+
 
     # initialization 
     boxes_and_preds=[] # list of bboxe coordinates and classes predictions  for each bboxes
@@ -32,6 +38,8 @@ def output_box(all_boxes, all_preds, boxes, bboxes, class_names):
         boxes_and_preds.append(dic)
 
     return boxes_and_preds
+
+        
 
 def sort_by(x, max_classes):
     for i in range(len(x)):
