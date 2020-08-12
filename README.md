@@ -289,7 +289,7 @@ cd models/
 **Inception V3**
 
 ```
-wget -O InceptionV3.h5 https://drive.google.com/uc?export=download&id=1G2dIFlRW2IVDehxZAU6kU72Ps9YMvzaI
+wget -O InceptionV3.h5 https://drive.google.com/uc?export=download&id=1dUDxDI5Hg-bG4B54ORTfTJyV9YIT3PHc
 ```
 
 **MobileNetV2**
