@@ -296,8 +296,9 @@ The table below shows from 1000 to 24000 iterations, all metrics are increasing.
 <p align="center"><img src="data/helpers/performance.png" width="640"\></p>
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
-To implement, YOLOv4-tiny in Tensorflow 2.0 convert YOLOv4 tiny weights to `.pb` format.
+To implement YOLOv4-tiny in Tensorflow 2.0, first we converted  YOLOv4 tiny .weights into the corresponding TensorFlow model (`.pb` format) and then run the model.
 Here we discribe the  different steps to do it :
+
 ## Getting Started
 ### 1. Cloning the "AI GUY" repository : https://github.com/theAIGuysCode/yolov4-custom-functions 
 ### 2. Creating a working environnemnent 
@@ -339,22 +340,23 @@ Make sure to use CUDA Toolkit version 10.1 as it is the proper version for the T
 
 <strong>Note:</strong>  To use our own weights:
 - We rename our best weights file to 'custom.weights' and pasted it into the 'data/' folder.
+
 - We pasted the custom.names file into the `data/classes/` folder : 
 <p align="center"><img src="data/helpers/custom_names.PNG" width="240"\></p>
+
 - We changed line 14 of `core/config.py` file and updated the code to point at your custom.names file:
 <p align="center"><img src="data/helpers/custom_config.png" width="640"\></p>
 
 **Note** <a href="https://github.com/Lucile-S/exploradome_tangram/blob/yolo---team1/data/custom.weights"> Here is the tiny yolov4 custom weight (`custom.weights`) file that is present in the ./data folder</a>
 
-## 2. Convert darknet YOLOv4 tiny weights to TensorFlow
+## 2. Convert darknet YOLOv4 tiny weights to TensorFlow 
 
 ```bash 
 # custom.weights : finally selected weight file
 python save_model.py --weights ./data/custom.weights --output ./checkpoints/custom-tiny-416 --input_size 416 --model yolov4  --tiny
 ```
+The resulting `.pb` model is saved in the `./checkpoints/custom-tiny-416`  directory :
 <p align="center"><img src="data/helpers/step_save_model.PNG"width="240"></p>
-
-
 
 ## 3. Run YOLO4 tiny TensorFlow model
 ### On image
