@@ -248,14 +248,13 @@ More training on these classes is required to achieve a more homogeneous accurac
 
 **InceptionV3**
 
-![InceptionV3-image1](https://drive.google.com/uc?export=view&id=1DBLun2RBatM7uj_SunfMv6_M-SQZT4Kk)
+![IV3-cm](https://drive.google.com/uc?export=view&id=13AZjhMdloIeWmDrRvZWygK62T-b0PIbQ)
 
 ![InceptionV3-image2](https://drive.google.com/uc?export=view&id=16JgUAb4uHdvIc6bEEd_qwei9Ou7cySZf)
 
 Using InceptionV3 with 30 epochs , we were able to achieve an accuracy of 98% over our test dataset.
 By looking at the confusion matrix,  The classifier has a little trouble with 5 kinds of images. It has a little trouble with Muntain, Rabbit, Swan, cat and the boat. We believe with more images accurate and more training the preduction will be 100% effective on all classes. 
 
-![IV3-cm](https://drive.google.com/uc?export=view&id=13AZjhMdloIeWmDrRvZWygK62T-b0PIbQ)
 
 **Conclusion**
 
