@@ -300,9 +300,9 @@ To implement YOLOv4-tiny in Tensorflow 2.0, first convert YOLOv4 tiny .weights i
 
 Here the different steps to do so:
 
-## Getting Started
-### 1. Cloning the "AI GUY" repository : https://github.com/theAIGuysCode/yolov4-custom-functions 
-### 2. Creating a working environnemnent 
+## 1. Getting Started
+### Cloning the "AI GUY" repository : https://github.com/theAIGuysCode/yolov4-custom-functions 
+### Creating a working environnemnent 
 #### Conda (Recommended)
 ```bash
 # Tensorflow CPU
