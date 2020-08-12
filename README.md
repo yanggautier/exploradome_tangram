@@ -1,5 +1,6 @@
 READ.ME
 
+**Google Drive link ** : https://drive.google.com/drive/folders/1AKQij6dHRzsHOmonEeTcVZSX_WBiR7yP?usp=sharing
 
 # TangrIAm Project 
 The project is partnership between Exploradôme museum, OCTO Technology and Microsoft and it aims to introduce the concept and application of artificial intelligence to young children (6-year-old).
