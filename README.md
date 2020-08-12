@@ -263,7 +263,7 @@ Note : if Google Colab runtime getting disconnected, the model is able to contin
 ```python
 !./darknet detector train data/obj_TINY.data cfg/custom-yolov4-tiny-obj.cfg yolov4-tiny.conv.29 -dont_show -map
 ```
-After training, we obtained a chart of our average loss vs. iterations . For a model to be 'accurate', it is recommanted to aim for a loss under 2.
+After training, we obtained a chart of our average loss vs. iterations. For a model to be 'accurate', it is recommanted to aim for a loss under 2.
 
 <p align="center" title="Test"><img src="data/helpers/chart_tiny_new_dataset.png"></p>
 
@@ -296,8 +296,9 @@ The table below shows from 1000 to 24000 iterations, all metrics are increasing.
 <p align="center"><img src="data/helpers/performance.png" width="640"\></p>
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
-To implement YOLOv4-tiny in Tensorflow 2.0, first we converted  YOLOv4 tiny .weights into the corresponding TensorFlow model (`.pb` format) and then run the model.
-Here we discribe the  different steps to do it :
+To implement YOLOv4-tiny in Tensorflow 2.0, first convert YOLOv4 tiny .weights into the corresponding TensorFlow model (`.pb` format) and then run the model.
+
+Here the different steps to do so:
 
 ## Getting Started
 ### 1. Cloning the "AI GUY" repository : https://github.com/theAIGuysCode/yolov4-custom-functions 
