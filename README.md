@@ -420,8 +420,9 @@ python detect_video.py --weights ./checkpoints/custom-tiny-416 --size 416 --mode
  <p align="center"><img src="data/helpers/num_objects.PNG" width="540"\></p>
  
 ## Filtering box coordinates according to game areas 
-
-
+To retrieve the positions of the tangrams only if they are in the specific game areas (cf table picture above), we created `filter_game_areas` function within the file `core/output.py`. 
+A file with  game area coordinates is provided as input. 
+ <p align="center"><img src="data/helpers/game_ares_coord_file.PNG" width="540"\></p>
 
 
 
