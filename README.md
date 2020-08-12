@@ -389,20 +389,19 @@ The output video will be saved wherever the --output flag points to. By default 
 
 **FPS** : around 25 FPS using GeForce (version 451.67) GPU  on a windows Surface laptop and xx using cpu
 
-# Detailed Info About Tangram Detection : bounding box coordinates, classe probabilies
+# Detailed Info About Tangram Detection : bounding box coordinates and classe probabilies
 
-<p align="center"><img src="data/helpers/game_table.PNG" width="440"\></p>
-
-```bash
-# Run yolov4 on webcam
-python detect_video.py --weights ./checkpoints/custom-tiny-416 --size 416 --model yolov4 --video 0 --output ./detections/results.avi --tiny
-```
+We created a custom  file `core/output.py` from witch functions are called by `detect_video.py` in order to keep track of detected tangram bounding box coordinates and classe probabilities at a given moment within video. 
 
 We added to detect_video.py a custom flag called `output_file` in order to ouput an external file (named `./detections/boxes_and_predictions.txt`by default). 
 
 This file contains, for each frame of the video, a list of dictionnaries (`object position and object prediction`) with detected trangram bounding box coordinates (upper left and  bottom right corner points --> x1, y1, x2, y2 format - in units of number of pixels) and associated classe probabilies. 
 
-In addition, a flag  `sort_by`  allow to sort the predictions by descending order and keep a specified number (`max_classes` variable) of classes.
+
+<p align="center"><img src="data/helpers/game_table.PNG" width="440"\></p>
+
+
+In addition, a flag  `sort_by`  allows to sort the predictions by descending order and to keep a specified number (`max_classes` variable) of classes.
 
 Example of the output file from one frame with 2 tangrams detected using the `sort_by 5` option that returns the top 5 classe propabilies : 
 ```bash
@@ -415,6 +414,8 @@ python detect_video.py --weights ./checkpoints/custom-tiny-416 --size 416 --mode
  Also, in order to test in a specific shorter video (<a href="https://github.com/Lucile-S/exploradome_tangram/blob/yolo---team1/data/video/test_tangram.mp4"> presents in the ./data/video folder</a>. 
  The Flag `num_objects` has been fixed to 2, it means that a maximum of two objects will be detected in the frame (ie : player 1 and player 2 tangrams). It can be changed to 3 in order to detect the card representing the tangram to perform by both players. 
  <p align="center"><img src="data/helpers/num_objects.PNG" width="540"\></p>
+
+
 
 
 ## Command line argument references
