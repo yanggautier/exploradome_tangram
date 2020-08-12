@@ -1,7 +1,5 @@
 READ.ME
 
-**Google Drive link ** : https://drive.google.com/drive/folders/1AKQij6dHRzsHOmonEeTcVZSX_WBiR7yP?usp=sharing
-
 # TangrIAm Project 
 The project is partnership between Exploradôme museum, OCTO Technology and Microsoft and it aims to introduce the concept and application of artificial intelligence to young children (6-year-old).
 
@@ -487,8 +485,14 @@ detect_video.py:
     (default: 0.25)
 ```
 
+# Google Drive link with the dataset used and .weights files :
+https://drive.google.com/drive/folders/1AKQij6dHRzsHOmonEeTcVZSX_WBiR7yP?usp=sharing
+
 
 # References
+
+
+
   
   * tensorflow-yolov4-tflite [YOLOv4] from theAIGuysCode
   * (https://github.com/theAIGuysCode/tensorflow-yolov4-tflite)
