@@ -423,7 +423,7 @@ To retrieve the positions of the tangrams only if they are in the specific game 
 A file with  game area coordinates is provided as input. 
  <p align="center"><img src="data/helpers/game_ares_coord_file.PNG" width="540"\></p>
 
-A flag named `--margin` allow to define the number (k ; k=4 --> "hard margin" , k<4 --> "soft margin") of tangram bounding bowe corners that have to be in the area in order to be output
+A flag named `--margin` allow to define the number (k ; k=4 --> "hard margin" , k<4 --> "soft margin") of tangram bounding box corners that have to be in the area in order to be output.
 The output is as follow : 
 ````
 [{'gauche': {'object_position': {'x1': 301.0, 'y1': 230.0, 'x2': 639.0, 'y2': 586.0}, 'object_prediction': {'lapin': 98.87607766682285, 'cygne': 0.49678835172260666, 'maison': 0.2942448320389281, 'bateau': 0.2166774145916018, 'marteau': 0.04775600012048969}}, 'droite': {'object_position': {'x1': 961.0, 'y1': 180.0, 'x2': 1377.0, 'y2': 565.0}, 'object_prediction': {'cygne': 66.28505782195334, 'pont': 19.12538237734353, 'lapin': 14.447121557662122, 'bateau': 0.12717977641208805, 'renard': 0.014715905781852607}}, 'centre': None}] 
