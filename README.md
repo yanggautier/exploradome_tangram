@@ -183,7 +183,7 @@ Custom YOLOv4 tiny detector training setup follows the same steps as for YOLOv4,
 - A custom `.cfg` file
 - `obj.data` and `obj.names` files
 - A `train.txt` file (`test.txt` is optional)
-- Downloading  of the yolov4-tiny weights
+- Downloading of the yolov4-tiny weights
 ```python
 # download the newly released yolov4-tiny weights
 %cd /content/darknet
@@ -257,7 +257,7 @@ The complete `darknet` folder including the custom files were uploaded to Google
 
 ### 2. Training
 
-The model trained for over 24000 iterations (it takes ~ 4/5 hours). The `yolov4-tiny-obj_"nb_iter".weights` files were automatically saved every 1000 iterations on Google Drive.
+The model trained for over 24000 iterations (it takes ~ 4/5 hours). The `custom-yolov4-tiny-obj_"nb_iter".weights` files were automatically saved every 1000 iterations on Google Drive.  In addition, a `custom-yolov4-tiny-obj_best.weights ` file, corresponding to weights with the highest mAP, is automaticcally saved.
 Note : if Google Colab runtime getting disconnected, the model is able to continue training from the latest checkpoint using the saved weights in `yolov4-obj_last.weights`. 
 
 ```python
@@ -275,9 +275,9 @@ The Mean Average Precision (mAP) of our Model  was checked  by runnning the foll
 ```
 
 We ran it on multiple of the saved weights to compare and find the weights with the highest mAP as that is the most accurate one. 
-NOTE: If you think your final weights file has overfitted then it is important to run these mAP commands to see if one of the previously saved weights is a more accurate model for your classes.
+NOTE: It is important to run the mAP commandson multiple of the saved weights to see if one of the previously saved weights is a more accurate model in case of final weights file has overfitted
 
-The table below shows that between the iterations 1000 to 4000 all metrics are increasing. Further on, between the iterations 4000 to 6000 the Mean Average Precision (mAP) starts decreasing. Continuing training, mAP rises to 0.97 (score already reached at 4000 iterations). The mAP overall best result is obtained between iterations 3000 to 3800.
+The table below shows from 1000 to 24000 iterations, all metrics are increasing. At the end of the training process mAP  rises to 0.98. The mAP overall best result (around 99%) is obtained between iterations 9600 to 10000. But to avoid overfitting, we decided to use the 3000 iterations saved weight file afterwards. 
 
 **MAPs on the TRAIN set:**
 <p align="center" title="Test"><img src="data/helpers/train_map_summary.PNG"></p>
@@ -344,19 +344,17 @@ Make sure to use CUDA Toolkit version 10.1 as it is the proper version for the T
 - We changed line 14 of `core/config.py` file and updated the code to point at your custom.names file:
 <p align="center"><img src="data/helpers/custom_config.png" width="640"\></p>
 
-
 **Note** <a href="https://github.com/Lucile-S/exploradome_tangram/blob/yolo---team1/data/custom.weights"> Here is the tiny yolov4 custom weight (`custom.weights`) file that is present in the ./data folder</a>
-
-
 
 ## 2. Convert darknet YOLOv4 tiny weights to TensorFlow
 
-```bash
-# Convert darknet weights to tensorflow 
-# custom.weights = yolo_tiny_best.weights
-# custom tiny yolov4
+```bash 
+# custom.weights : finally selected weight file
 python save_model.py --weights ./data/custom.weights --output ./checkpoints/custom-tiny-416 --input_size 416 --model yolov4  --tiny
 ```
+<p align="center"><img src="data/helpers/step_save_model.PNG"width="240"></p>
+
+
 
 ## 3. Run YOLO4 tiny TensorFlow model
 ### On image
