@@ -385,7 +385,7 @@ python detect_video.py --weights ./checkpoints/custom-tiny-416 --size 416 --mode
 
 The output video will be saved wherever the --output flag points to. By default (in the absence of a flag), the video will not be saved.
 
-<p align="center"><img src="data/helpers/demo.gif"\></p>
+<p align="center"><img src="data/helpers/demo.gif" width="640"\></p>
 
 **FPS** : around 25 FPS using GeForce (version 451.67) GPU  on a windows Surface laptop and xx using cpu
 
@@ -412,6 +412,8 @@ python detect_video.py --weights ./checkpoints/custom-tiny-416 --size 416 --mode
 ```
 [{'object_position': {'x1': 237.0, 'y1': 331.0, 'x2': 558.0, 'y2': 596.0}, 'object_prediction': {'maison': 99.86477540058777, 'marteau': 0.0528011213493851, 'bol': 0.03359513523064186, 'montagne': 0.01354623555080417, 'coeur': 0.008174154976000441}}, {'object_position': {'x1': 1035.0, 'y1': 191.0, 'x2': 1361.0, 'y2': 489.0}, 'object_prediction': {'bateau': 92.25971970012176, 'montagne': 7.287678893676028, 'coeur': 0.1565047711833095, 'bol': 0.1486034053909359, 'renard': 0.05554839096459371}}] 
 ````
+ Also, in order to test in a specific shorter video (<a href="https://github.com/Lucile-S/exploradome_tangram/blob/yolo---team1/data/video/test_tangram_5.mp4"> presents in the ./data/video folder</a>. The Flag `num_objects` has been fixed to 2, it means that a maximum of two objects will be detected in the frame (ie : player 1 and player 2 tangrams) 
+ <p align="center"><img src="data/helpers/num_objects.PNG" width="440"\></p>
 
 
 ## Command line argument references
