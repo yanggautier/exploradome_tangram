@@ -391,14 +391,22 @@ The output video will be saved wherever the --output flag points to. By default 
 
 # Detailed Info About Tangram Detection : bounding box coordinates and classe probabilies
 
-We created a custom  file `core/output.py` from witch functions are called by `detect_video.py` in order to keep track of detected tangram bounding box coordinates and classe probabilities at a given moment within video. 
+
+.center[
+<p align="center"><img src="data/helpers/game_table.PNG" width="440"\></p>
+.caption[**Game table schematic representation** Game table shematic representation 
+]
+]
+
+We created a custom  file `core/output.py` from witch functions are called by `detect_video.py` in order to keep track of detected tangram bounding box coordinates and classe probabilities at a given moment within video. At this point, the detection is performed over the whole table where the game takes place. 
+
 
 We added to detect_video.py a custom flag called `output_file` in order to ouput an external file (named `./detections/boxes_and_predictions.txt`by default). 
 
 This file contains, for each frame of the video, a list of dictionnaries (`object position and object prediction`) with detected trangram bounding box coordinates (upper left and  bottom right corner points --> x1, y1, x2, y2 format - in units of number of pixels) and associated classe probabilies. 
 
 
-<p align="center"><img src="data/helpers/game_table.PNG" width="440"\></p>
+
 
 
 In addition, a flag  `sort_by`  allows to sort the predictions by descending order and to keep a specified number (`max_classes` variable) of classes.
@@ -415,7 +423,7 @@ python detect_video.py --weights ./checkpoints/custom-tiny-416 --size 416 --mode
  The Flag `num_objects` has been fixed to 2, it means that a maximum of two objects will be detected in the frame. In principle player 1 and player 2 tangrams. Nevertheless  because at the beginning of the solving the tangrams are just bunch of pieces, the detector will not be able to identified the tangram(s) and it will not generate any bounding boxes or put 2 boxes in the one that is was able to detect). It can be changed to 3 in order to detect the card representing the tangram to perform by both players. 
  <p align="center"><img src="data/helpers/num_objects.PNG" width="540"\></p>
  
-## Game area filtering 
+## Filtering box coordinates according to game areas 
 
 
 
