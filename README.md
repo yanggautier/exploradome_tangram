@@ -387,14 +387,14 @@ The output video will be saved wherever the --output flag points to. By default 
 
 <p align="center"><img src="data/helpers/demo.gif" width="640"\></p>
 
-**FPS** : around 25 FPS using GeForce (version 451.67) GPU  on a windows Surface laptop and xx using cpu
+**FPS** : around 25 FPS using GeForce (version 451.67) GPU on a Windows Surface laptop and xx using cpu
 
 # Detailed Info About Tangram Detection : bounding box coordinates and classe probabilies
 
 
 **Game table schematic representation**
 <p align="center"><img src="data/helpers/game_table.PNG" width="440"\></p>
-<p align="center">< The table is divided into different areas : player 1 game area (to the left, "gauche"), player 2 game area (to the right, "droite") and a center area ("centre") where a picture representing the tangram to solve \></p>
+<p align="center"> The table is divided into different areas : player 1 game area (to the left, "gauche"), player 2 game area (to the right, "droite") and a center area ("centre") where there is a picture representing the tangram to solve </p>
 
 We created a custom  file `core/output.py` from witch functions are called by `detect_video.py` in order to keep track of detected tangram bounding box coordinates and classe probabilities at a given moment within video. At this point, the detection is performed over the whole table where the game takes place. 
 
@@ -402,8 +402,6 @@ We created a custom  file `core/output.py` from witch functions are called by `d
 We added to detect_video.py a custom flag called `output_file` in order to ouput an external file (named `./detections/boxes_and_predictions.txt`by default). 
 
 This file contains, for each frame of the video, a list of dictionnaries (`object position and object prediction`) with detected trangram bounding box coordinates (upper left and  bottom right corner points --> x1, y1, x2, y2 format - in units of number of pixels) and associated classe probabilies. 
-
-
 
 
 
