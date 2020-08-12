@@ -290,7 +290,7 @@ The table below shows from 1000 to 24000 iterations, all metrics are increasing.
 <p align="center"><img src="data/helpers/map_per_class.JPG" width="640"></p>
 
 
-#  YOLOv4 tiny using TensorFlow 
+# YOLOv4 tiny using TensorFlow 
 
 **Note: Performance** Check out how YOLOv4 compares to other object detection systems
 <p align="center"><img src="data/helpers/performance.png" width="640"\></p>
@@ -392,11 +392,9 @@ The output video will be saved wherever the --output flag points to. By default 
 # Detailed Info About Tangram Detection : bounding box coordinates and classe probabilies
 
 
-.center[
+**Game table schematic representation**
 <p align="center"><img src="data/helpers/game_table.PNG" width="440"\></p>
-.caption[**Game table schematic representation** Game table shematic representation 
-]
-]
+<p align="center">< The table is divided into different areas : player 1 game area (to the left, "gauche"), player 2 game area (to the right, "droite") and a center area ("centre") where a picture representing the tangram to solve \></p>
 
 We created a custom  file `core/output.py` from witch functions are called by `detect_video.py` in order to keep track of detected tangram bounding box coordinates and classe probabilities at a given moment within video. At this point, the detection is performed over the whole table where the game takes place. 
 
