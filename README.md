@@ -280,14 +280,14 @@ NOTE: It is important to run the mAP commandson multiple of the saved weights to
 The table below shows from 1000 to 24000 iterations, all metrics are increasing. At the end of the training process mAP  rises to 0.98. The mAP overall best result (around 99%) is obtained between iterations 9600 to 10000. But to avoid overfitting, we decided to use the 3000 iterations saved weight file afterwards. 
 
 **MAPs on the TRAIN set:**
-<p align="center" title="Test"><img src="data/helpers/train_map_summary.PNG" width="440"></p>
+<p align="center" title="Test"><img src="data/helpers/train_map_summary.PNG" width="640"></p>
 
 
 **MAPs on the TEST set:**
-<p align="center" title="Test"><img src="data/helpers/test_map_summary.PNG" width="440"></p>
+<p align="center" title="Test"><img src="data/helpers/test_map_summary.PNG" width="640"></p>
 
 **Class precision on the TEST set:**
-<p align="center"><img src="data/helpers/map_per_class.JPG" width="440"></p>
+<p align="center"><img src="data/helpers/map_per_class.JPG" width="640"></p>
 
 
 #  YOLOv4 tiny using TensorFlow 
