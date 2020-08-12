@@ -391,7 +391,7 @@ The output video will be saved wherever the --output flag points to. By default 
 
 # Detailed Info About Tangram Detection : bounding box coordinates, classe probabilies
 
-<p align="center"><img src="data/helpers/game_table.PNG"\></p>
+<p align="center"><img src="data/helpers/game_table.PNG" width="440"\></p>
 
 ```bash
 # Run yolov4 on webcam
