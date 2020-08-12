@@ -485,7 +485,7 @@ detect_video.py:
     (default: 0.25)
 ```
 
-# Google Drive link with the dataset used and .weights files :
+# Google Drive link with the dataset and .weights files :
 https://drive.google.com/drive/folders/1AKQij6dHRzsHOmonEeTcVZSX_WBiR7yP?usp=sharing
 
 
