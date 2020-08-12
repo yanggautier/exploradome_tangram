@@ -363,7 +363,6 @@ The resulting `.pb` model is saved in the `./checkpoints/custom-tiny-416`  direc
 ### On image
 
 ```bash
-# STEP 2
 # Run yolov4-tiny tensorflow model
 python detect.py --weights ./checkpoints/custom-tiny-416 --size 416 --model yolov4 --images ./data/images/maison_3.png --tiny
 ```
@@ -381,12 +380,35 @@ python detect_video.py --weights ./checkpoints/custom-tiny-416 --size 416 --mode
 python detect_video.py --weights ./checkpoints/custom-tiny-416 --size 416 --model yolov4 --video 0 --output ./detections/results.avi --tiny
 ```
 
-
 ## 4.  Result Video
+
 
 The output video will be saved wherever the --output flag points to. By default (in the absence of a flag), the video will not be saved.
 
 <p align="center"><img src="data/helpers/demo.gif"\></p>
+
+**FPS** : around 25 FPS using GeForce (version 451.67) GPU  on a windows Surface laptop and xx using cpu
+
+# Detailed Info About Tangram Detection : bounding box coordinates, classe probabilies
+
+```bash
+# Run yolov4 on webcam
+python detect_video.py --weights ./checkpoints/custom-tiny-416 --size 416 --model yolov4 --video 0 --output ./detections/results.avi --tiny
+```
+
+We added to detect_video.py a custom flag called `output_file` in order to ouput an external file (named `./detections/boxes_and_predictions.txt`by default). 
+This file contains, for each frame of the video, a list of dictionnaries (`object position and object prediction`) with detected trangram bounding box coordinates (upper left and  bottom right corner points ; in units of number of pixels) and associated classe probabilies. 
+In addition, a flag  `sort_by`  allow to sort the predictions by descending order and keep a specified number (`max_classes` variable) of classes.
+
+Example of the output file from one frame with 2 tangrams detected using the `sort_by 5` option that returns the top 5 classe propabilies : 
+```bash
+python detect_video.py --weights ./checkpoints/custom-tiny-416 --size 416 --model yolov4 --video ./data/video/test_tangram_5.mp4  --tiny --sort_by 5
+```
+```
+[{'object_position': {'x1': 237.0, 'y1': 331.0, 'x2': 558.0, 'y2': 596.0}, 'object_prediction': {'maison': 99.86477540058777, 'marteau': 0.0528011213493851, 'bol': 0.03359513523064186, 'montagne': 0.01354623555080417, 'coeur': 0.008174154976000441}}, {'object_position': {'x1': 1035.0, 'y1': 191.0, 'x2': 1361.0, 'y2': 489.0}, 'object_prediction': {'bateau': 92.25971970012176, 'montagne': 7.287678893676028, 'coeur': 0.1565047711833095, 'bol': 0.1486034053909359, 'renard': 0.05554839096459371}}] 
+````
+
+to your command prompt just add the flag "--info" to any of your commands. The information on each detection includes the class, confidence in the detection and the bounding box coordinates of the detection in xmin, ymin, xmax, ymax format.
 
 
 ## Command line argument references
