@@ -54,6 +54,8 @@ def detect_video(_argv):
             number_string = number_string.split(',')
             number_list = [float(i) for i in number_string]
             game_areas.append(number_list)
+    print('game_areas')
+    print(game_areas)
 
     #### saved file path and name
     box_preds_file = open(FLAGS.output_file + 'boxes_and_predictions.txt', 'w')
@@ -151,8 +153,8 @@ def detect_video(_argv):
 
     cv2.destroyAllWindows()
 
-if __name__ == '__main__':
-    try:
-        app.run(detect_video)
-    except SystemExit:
-        pass
+# if __name__ == '__main__':
+#     try:
+#         app.run(detect_video(link=""))
+#     except SystemExit:
+#         pass

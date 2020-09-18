@@ -7,3 +7,5 @@ absl-py
 easydict
 matplotlib
 pillow
+Flask
+flask_restful
