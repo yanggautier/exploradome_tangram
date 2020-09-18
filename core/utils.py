@@ -4,6 +4,10 @@ import colorsys
 import numpy as np
 import tensorflow as tf
 from core.config import cfg
+from PIL import Image
+
+from absl import app, flags, logging
+FLAGS = flags.FLAGS
 
 def load_freeze_layer(model='yolov4', tiny=False):
     if tiny:
@@ -70,7 +74,6 @@ def load_weights(model, weights_file, model_name='yolov4', is_tiny=False):
 
     # assert len(wf.read()) == 0, 'failed to read all data'
     wf.close()
-
 
 def read_class_names(class_file_name):
     names = {}
@@ -159,9 +162,6 @@ def draw_bbox(image, bboxes, info = False, counted_classes = None, show_label=Tr
 
         c1, c2 = (coor[0], coor[1]), (coor[2], coor[3])
         cv2.rectangle(image, c1, c2, bbox_color, bbox_thick)
-        #cv2.rectangle(image, (0,0), (960,1080), 0, bbox_thick)
-        #cv2.rectangle(image, (960,0), (1920,1080), bbox_color, bbox_thick)
-        #cv2.rectangle(image, (480,0), (1480,100), bbox_color, bbox_thick)
 
         if show_label:
             bbox_mess = '%s: %.2f' % (class_name, score)
@@ -172,8 +172,7 @@ def draw_bbox(image, bboxes, info = False, counted_classes = None, show_label=Tr
             cv2.putText(image, bbox_mess, (c1[0], np.float32(c1[1] - 2)), cv2.FONT_HERSHEY_SIMPLEX,
                         fontScale, (0, 0, 0), bbox_thick // 2, lineType=cv2.LINE_AA)
 
-    return image
-
+    return image, class_name
 
 def bbox_iou(bboxes1, bboxes2):
     """
@@ -213,7 +212,6 @@ def bbox_iou(bboxes1, bboxes2):
     iou = tf.math.divide_no_nan(inter_area, union_area)
 
     return iou
-
 
 def bbox_giou(bboxes1, bboxes2):
     """
@@ -264,7 +262,6 @@ def bbox_giou(bboxes1, bboxes2):
     giou = iou - tf.math.divide_no_nan(enclose_area - union_area, enclose_area)
 
     return giou
-
 
 def bbox_ciou(bboxes1, bboxes2):
     """
@@ -379,8 +376,43 @@ def freeze_all(model, frozen=True):
     if isinstance(model, tf.keras.Model):
         for l in model.layers:
             freeze_all(l, frozen)
+
 def unfreeze_all(model, frozen=False):
     model.trainable = not frozen
     if isinstance(model, tf.keras.Model):
         for l in model.layers:
             unfreeze_all(l, frozen)
+
+def get_inference(model, image_data, img):
+    """
+    Run inference and return the image with predictions
+    """
+    batch_data = tf.constant(image_data)
+    pred_bbox = model(batch_data)
+
+    for key, value in pred_bbox.items():
+        boxes = value[:, :, 0:4]
+        pred_conf = value[:, :, 4:]
+
+    # tensor to numpy array 
+    all_boxes=boxes[0].numpy()
+    all_preds=pred_conf[0].numpy()
+
+    # get predicted values
+    boxes, scores, classes, valid_detections = tf.image.combined_non_max_suppression(
+        boxes=tf.reshape(boxes, (tf.shape(boxes)[0], -1, 1, 4)),
+        scores=tf.reshape(
+            pred_conf, (tf.shape(pred_conf)[0], -1, tf.shape(pred_conf)[-1])),
+        max_output_size_per_class = FLAGS.num_objects,
+        max_total_size = 2,
+        iou_threshold = FLAGS.iou,
+        score_threshold = FLAGS.score
+    )
+
+    original_h, original_w, _ = img.shape
+    bboxes = format_boxes(boxes.numpy()[0], original_h, original_w)
+    pred_bbox = [bboxes, scores.numpy()[0], classes.numpy()[0], valid_detections.numpy()[0]]
+    image, class_predicted = draw_bbox(img, pred_bbox)
+    image = Image.fromarray(image.astype(np.uint8))
+
+    return image, class_predicted, {"boxes" : boxes, "bboxes" : bboxes, "all_boxes" : all_boxes, "all_preds" : all_preds}

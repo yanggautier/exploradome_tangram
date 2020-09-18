@@ -39,13 +39,10 @@ def output_box(all_boxes, all_preds, boxes, bboxes, class_names):
 
     return boxes_and_preds
 
-        
-
 def sort_by(x, max_classes):
     for i in range(len(x)):
         x[i]['object_prediction']= dict(sorted(x[i]['object_prediction'].items(), key=operator.itemgetter(1),reverse=True)[:max_classes])
     return x
-
 
 def pointInRect(point,rect):
     x1, y1, x2, y2 = rect
