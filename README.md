@@ -1,5 +1,3 @@
-READ.ME
-
 # TangrIAm Project 
 The project is partnership between Exploradôme museum, OCTO Technology and Microsoft and it aims to introduce the concept and application of artificial intelligence to young children (6-year-old).
 
@@ -30,266 +28,8 @@ Within the framework of the project, 12 tangram selected shapes act as classes f
 
 The project objective is to train a YOLOv4 model to provide accurate predictions when identifying the detected shape of the tangram while live solving the puzzle.
 
-# Data 
 
-## 1. Video recording :
-The first step in collecting data was to record a video sample of tangram solving. 
-
-## 2. From video stream to images
-
-Further on, extract representative frames of the 12 shapes/classes and annotate the position of the object of interest within the frame.
-
-This was done by:
-- taking screenshots of each shape from the video recorded
-- using a python code that takes snapshots of the video every 3 seconds
-
-## 3. Image annotation
-
-Two methods were tested:
-
-- labelImg (rectangle around the object)
-- VIA VGG Image Annotator (object outlines)
-
-LabelImg showed better performance.
-
-From the video, screenshots of the classes were done using two strategies, ie, a perfect version of the figure and an imperfect version of the figure containing white spaces between the tangrams.
-
-### Guidelines for using image annotations using labelImg
-
-#### Installation
-Two installation methods are possible:
-
- 1. Go through the source code following the tutorial available at this GitHub link: https://github.com/tzutalin/labelImg)
- 2. Download the .exe and launch the application directly from desktop (download link https://tzutalin.github.io/labelImg/)
-    
-```python
-#### Installation for Mac
-
-brew install qt  # Install qt-5.x.x by Homebrew
-brew install libxml2
-
-or using pip
-
-pip3 install pyqt5 lxml # Install qt and lxml by pip
-
-make qt5py3
-python3 labelImg.py
-python3 labelImg.py [IMAGE_PATH] [PRE-DEFINED CLASS FILE]
-```
-
-```python
-#### Installation for Windows
-
-pyrcc4 -o lib/resources.py resources.qrc
-For pyqt5, pyrcc5 -o libs/resources.py resources.qrc
-
-python labelImg.py
-python labelImg.py [IMAGE_PATH] [PRE-DEFINED CLASS FILE]
-```
-
-#### Labeling with YOLO text file format
-
-- Define the classes list to be used for training in `data/predefined_classes.txt`
-- Launch labelImg.py
-- Right below the "Save" button in the toolbar, click "PascalVOC" button to switch to YOLO format
-- Use Open/OpenDIR to process single or multiple images
-- When finished with a single image, click "Save"
-    - A YOLO format txt file will be saved in the corresponding folder of homonymous image
-    - A file named `classes.txt` is equally saved to the respective folder. The file `classes.txt` lists the class names that the YOLO label refers to.
-
-## 4. Building a dataset
-
-Dataset size before data augmentation:
-
--  134 labeled images with corresponding `.txt` files in YOLO format (label and bounding box coordinates) 
-
-The dataset was split in a train dataset with 69 images and a test dataset with 59 images before applying data augmentation:
-
-<p align="center"><img src="data/helpers/augmented_distribution_tables.png"></p>
-
-## 5. Data augmentation 
-
-Data augmentation is a way to increase the size of available data, instead of adding new data.
-
-For this purpose, within the scope of the project data augmentation was performed with Roboflowai. Roboflow which allows several image transformations, such as: blur, rotation, shear, exposure, brightness, noise.
-
-A mix of above-mentioned transformation was used to augment the dataset.
-
-
-### Steps
-
-To perform data augmentation with Roboflow while minding the YOLO format, the following steps were performed:
-
-1. Create a [Roboflow](https://app.roboflow.ai/) account
-2. Create a "Dataset" using "Object Detection" (Bounding Box) as type
-3.	Upload the images and their annotations (e.g. VOC XML, COCO JSON, TensorFlow Object Detection CSV formats)
-4.	Once uploaded, select preferred preprocessing steps. We recommend auto-orient and resize to 416x416
-5. Add "Augmentation Options"
-6. Click "Generate"
-7. Select `YOLO Darknet` as format and show download code
-8. Choose a link to download via terminal or jupyter notebook
-
-The following augmentations options randomly were applied to images in the training dataset:
-
-- Flip (vertical and horizontal)
-- 90° rotate (counter, clockwise, upside, down)
-- Rotation every 5° up to 45°
-- Crop : 20% 
-- Brightness : 5% and 10%
-- Exposure: 12% and 25%
-- Blur : 3px and 1.25px
-- Noise: 5px and 2px
-
-For the test dataset the augmentation options are listed below:
-
-- Flip (vertical and horizontal)
-- 90° rotate (counter, clockwise, upside, down)
-- Rotation 5°, 15° and 30%
-- Brightness : 5% and 10%
-
-### Data size after data augmentation
-3503 images, of which:
-
-- 2796 images for the training dataset (~ 80%)
-- 707 images for the test dataset (~ 20%)
-
-<p><img src="data/helpers/train_augmented_distribution_table.png"></p>
-
-<p><img src="data/helpers/test_augmented_distribution_tables.png"></p>
-
-
-# Model training: YOLOv4 tiny
-The tiny version of YOLOv4 was implemented on the dataset for much faster training and much faster detection.
-
-The primary difference between YOLOv4 tiny and YOLOv4 is that the network size is dramatically reduced. The number of convolutional layers backbone are compressed (137 for yolov4 vs 29 for yolov4 tiny). The number of YOLO layers are two instead of three and there are fewer anchor boxes for prediction. The differences between the two networks can be noted in the config files:
-- [yolov4-tiny.cfg](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4-tiny.cfg)
-- [yolov4-tiny](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4.cfg)
-YOLOv4 tiny performance was equally tested on coco dataset. In all, YOLOv4 tiny inference time is roughly 8x faster compared to YOLOv4 and its performance is roughly 2/3 that of YOLOv4 on MS COCO). On small custom detection tasks that are more tractable, there is less performance degradation.
-
-The YOLOv4 Darknet (from AlexeyAB's GitHub repository) was trained using Google Colab. This option facilitates model deployment and rapid training while providing free GPU usage.  The model training is inspired by the respective tutorial of "the AI GUY":
-
--  Colab link on how to Train YOLOv4 and YOLOv4 tiny Custom Object Detector : https://colab.research.google.com/drive/1_GdoqCJWXsChrOiY8sZMr_zbr_fH-0Fg?usp=sharing#scrollTo=qaONUTI2l4Sf, https://colab.research.google.com/drive/1PWOwg038EOGNddf6SXDG5AsC8PIcAe-G#scrollTo=nBnwpBV5ZXxQ
--  Youtube link for building and training Custom Object Detector : https://www.youtube.com/watch?v=mmj3nxGT2YQ
--  Github link of YOLOv4 cloud tutorial: https://github.com/theAIGuysCode/YOLOv4-Cloud-Tutorial/tree/master/yolov4
-
-The Google Colab notebook of our tangram model training is available on this link: 
-https://colab.research.google.com/drive/1-SU3dltpVubOOeyuaBgCNdPsHaIqlfI2?usp=sharing
-
-### 1. Setting up
-Custom YOLOv4 tiny detector training setup follows the same steps as for YOLOv4, it requires :
-
-- A labeled custom dataset in the YOLO Darknet format: each image has to have a corresponding `.txt` file with the object label and the object bounding box coordinates (e.g label coord_1 coord_2 coord_3 coord_4)
-- A custom `.cfg` file
-- `obj.data` and `obj.names` files
-- A `train.txt` file (`test.txt` is optional)
-- Downloading of the yolov4-tiny weights
-```python
-# download the newly released yolov4-tiny weights
-%cd /content/darknet
-!wget https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.weights
-!wget https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.conv.29
-```
-
-The required configuration files in the local `darknet` drive are shown in the image below : 
-![Yolov3 configuration files cheat sheet.jpg](http://blog.ibanyez.info/download/B20190410T000000072.png)
-
-A cheat sheet is available [here](http://blog.ibanyez.info/download/B20190410T000000072.png).
-
-#### the `.cfg` (configuration) file
-
-The `.cfg` file named "custom-yolov4-tiny-obj.cfg" was edited to include the number of classes (12 different tangram shapes) used for the project. According to the model developer’s tutorial, the first lines of the `.cfg` file were modified to following:
-
-```bash
-batch = 64 
-subdivisions = 16
-width = 416 (our image width)
-height = 416 (our image height)
-
-max_batches = 24000   # ie :  (# of classes) * 2000 (but no less than 6000 so if you are training for 1, 2, or 3 classes it will be 6000, here detector for 12 classes gives a max_batches=24000) 
-steps = 19200,21600  # ie: 80% of max_batches, 90% of max_batches (so here our max_batches = 24000)
-```
-
-Next, `classes = 12` was included in the two YOLO layers (ie: line 220 and line 268) and `filters = 51` in the two convolutional layers before the YOLO layers (ie: lines 212 and line 262). 
-
-The `filters` parameter is set based of the following formula:  filters = (# of classes + 5) * 3 (so if you are training for one class then your filters = 18, but if you are training for 12 classes then your filters = 51).
-
-**Optional:** When running into memory issues or finding the training taking a super long time, change one line from random = 1 to random = 0 in each of the two YOLO layers in the `.cfg`, to speed up training, however, at the expense of the accuracy of model. This trick will also help save memory if you run into any memory issues.
-
-#### `obj.names` and `obj.data` files
-
-  A `obj.names` file is created to include one class name per line in the same order as the `_darknet.labels` file generated by Roboflow:
-
-```bash
-bateau
-bol
-chat
-coeur
-cygne
-lapin
-maison
-marteau
-montagne
-pont
-renard
-tortue
-```
-
-NOTE: There should be no spaces in the class names.
-
-  A `obj.data` file was created with the following code, including the number of classes, as well as the backup location (this backup folder will serve to save the weights of the model at different iteration times during training):
-
-```bash
-classes = 12
-train =  data/train.txt
-valid =  data/test.txt
-names = data/obj.names
-backup = /mydrive/DeepL/Projet_tangram/backup_TINY
-```
-
-#### `train.txt` and `test.txt`
-
-The last configuration files needed before custom training the detector are `train.txt` and `test.txt` files which include the relative paths to all training images and validation images.
-
-"The AI GUY" tutorial provides scripts to easily generate these two files with the image folder paths. The respective scripts are `generate_train.py` and `generate_test.py`.
-
-The complete `darknet` folder including the custom files were uploaded to Google Drive mounted in Google Colab notebook.
-
-### 2. Training
-
-The model trained for over 24000 iterations (it takes ~ 4/5 hours). The `custom-yolov4-tiny-obj_"nb_iter".weights` files were automatically saved every 1000 iterations on Google Drive.  In addition, a `custom-yolov4-tiny-obj_best.weights ` file, corresponding to weights with the highest mAP, is automaticcally saved.
-Note : if Google Colab runtime getting disconnected, the model is able to continue training from the latest checkpoint using the saved weights in `yolov4-obj_last.weights`. 
-
-```python
-!./darknet detector train data/obj_TINY.data cfg/custom-yolov4-tiny-obj.cfg yolov4-tiny.conv.29 -dont_show -map
-```
-After training, we obtained a chart of our average loss vs. iterations. For a model to be 'accurate', it is recommanted to aim for a loss under 2.
-
-<p align="center" title="Test"><img src="data/helpers/chart_tiny_new_dataset.png"></p>
-
-### 3. Mean Average Precision (mAP)
-The Mean Average Precision (mAP) of the model  was checked by runnning the following command :
-
-```python
-!./darknet detector map data/obj_TINY.data cfg/custom-yolov4-tiny-obj.cfg /mydrive/DeepL/Projet_tangram/backup_TINY/yolov4-tiny-obj_1000.weights
-```
-
-We ran it on multiple of the saved weights to compare and find the weights with the highest mAP as that is the most accurate one. 
-NOTE: It is important to run the mAP commandson multiple of the saved weights to see if one of the previously saved weights is a more accurate model in case of final weights file has overfitted
-
-The table below shows from 1000 to 24000 iterations, all metrics are increasing. At the end of the training process mAP  rises to 0.98. The mAP overall best result (around 99%) is obtained between iterations 9600 to 10000. But to avoid overfitting, we decided to use the 3000 iterations saved weight file afterwards. 
-
-**MAPs on the TRAIN set:**
-<p align="center" title="Test"><img src="data/helpers/train_map_summary.PNG" width="640"></p>
-
-
-**MAPs on the TEST set:**
-<p align="center" title="Test"><img src="data/helpers/test_map_summary.PNG" width="640"></p>
-
-**Class precision on the TEST set:**
-<p align="center"><img src="data/helpers/map_per_class.JPG" width="640"></p>
-
-
-# YOLOv4 tiny using TensorFlow 
+### YOLOv4 tiny using TensorFlow 
 
 **Note: Performance** Check out how YOLOv4 compares to other object detection systems
 <p align="center"><img src="data/helpers/performance.png" width="640"\></p>
@@ -381,7 +121,6 @@ python detect_video.py --weights ./checkpoints/custom-tiny-416 --size 416 --mode
 
 ## 4.  Result Video
 
-
 The output video will be saved wherever the --output flag points to. By default (in the absence of a flag), the video will not be saved.
 
 <p align="center"><img src="data/helpers/demo.gif" width="640"\></p>
@@ -389,7 +128,6 @@ The output video will be saved wherever the --output flag points to. By default 
 **FPS** : around 25 FPS using GeForce (version 451.67) GPU on a Windows Surface laptop and xx using cpu
 
 # Detailed Info About Tangram Detection : bounding box coordinates and classe probabilies
-
 
 **Game table schematic representation**
 <p align="center"><img src="data/helpers/game_table.PNG" width="440"\></p>
@@ -497,9 +235,6 @@ https://drive.google.com/drive/folders/1AKQij6dHRzsHOmonEeTcVZSX_WBiR7yP?usp=sha
 
 # References
 
-
-
-  
   * tensorflow-yolov4-tflite [YOLOv4] from theAIGuysCode
   * (https://github.com/theAIGuysCode/tensorflow-yolov4-tflite)
   * YOLOv4: Optimal Speed and Accuracy of Object Detection [YOLOv4](https://arxiv.org/abs/2004.10934).

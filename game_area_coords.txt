@@ -1,0 +1,4 @@
+# x1,y1,x2,y2 coordinates of the left, right and center areas
+0,0,0.5,1
+0.5,0,1,1  
+0.25,0,0.645,0.166
